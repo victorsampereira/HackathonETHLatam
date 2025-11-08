@@ -2,8 +2,6 @@
 pragma solidity ^0.8.24;
 
 // TODO: Import the FHE library here
-// Hint: You need to import from "@fhevm/solidity/lib/FHE.sol"
-
 
 contract BasicImports {
     // This function returns true to confirm the contract compiles

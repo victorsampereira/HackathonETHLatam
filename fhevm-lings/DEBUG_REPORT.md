@@ -2,6 +2,8 @@
 
 ## Issues Found and Fixed
 
+**Total Issues Fixed:** 3 critical bugs
+
 ### 1. ❌ Exercise 01: Wrong Keyboard Shortcut in Instructions & Missing Progressive Hints
 
 **Problems:**
@@ -57,6 +59,38 @@
 **Testing:**
 - ✅ Test now FAILS when import is missing (correct behavior)
 - ✅ Test now PASSES when import is present (correct behavior)
+
+---
+
+### 3. ❌ Navigation 'n' Command: Always Returns to First Exercise (Critical Bug)
+
+**Problem:**
+- After completing an exercise and pressing 'n' (next), the system would return to the first unsolved exercise instead of advancing to the next one
+- This happened because `findNextUnsolved()` always started searching from the beginning of the exercise list
+- Made it impossible to progress through exercises sequentially
+
+**Root Cause:**
+- The `waitForNext()` function called `findNextUnsolved(allExercises)` which searches from the start
+- No function existed to find the next unsolved exercise after the current one
+
+**Fix:**
+1. Created new function `findNextUnsolvedAfter(exercises, currentExercise)` in exerciseRepo.ts
+   - Starts searching from the exercise after the current one
+   - Returns the next unsolved exercise in sequence
+   - Returns null if no more exercises exist
+
+2. Updated `waitForNext()` to use the new function
+   - Now correctly advances to the next exercise
+   - Maintains proper sequential progression
+
+**Files Modified:**
+- `src/exerciseRepo.ts` - Added `findNextUnsolvedAfter()` function
+- `src/index.ts` - Updated import and `waitForNext()` to use new function
+
+**Testing:**
+- ✅ Completing exercise 1 and pressing 'n' now goes to exercise 2 (not back to 1)
+- ✅ Sequential progression now works correctly
+- ✅ Returns null when all exercises are complete (shows completion message)
 
 ---
 
@@ -166,12 +200,25 @@ fhevm-lings/
 
 All critical issues have been fixed:
 
-✅ **Exercise 01** - Keyboard shortcut typo corrected
+✅ **Exercise 01** - Keyboard shortcut typo corrected + progressive hints added
 ✅ **Exercise 02** - False positive eliminated with source code validation
+✅ **Navigation (n)** - Sequential progression now works correctly (CRITICAL FIX)
 ✅ **Performance** - Optimized lazy loading working correctly
 ✅ **File Structure** - Well organized and intuitive
 ✅ **Documentation** - Comprehensive and helpful
 ✅ **Tests** - All working correctly
+
+### Key Improvements
+
+**Before:**
+- ❌ Pressing 'n' would loop back to first unsolved exercise
+- ❌ Exercise 02 showed as solved without completing it
+- ❌ Exercise 01 showed generic hints instead of deletion instructions
+
+**After:**
+- ✅ Pressing 'n' correctly advances to next exercise in sequence
+- ✅ Exercise 02 properly validates FHE import is present
+- ✅ Exercise 01 provides clear progressive hints about deletion
 
 The project is now ready for use! 🎉
 

@@ -6,7 +6,7 @@ import * as readline from 'readline';
 import chokidar from 'chokidar';
 import chalk from 'chalk';
 import { ui } from './ui';
-import { getExercises, findNextUnsolved, isSolved, Exercise } from './exerciseRepo';
+import { getExercises, findNextUnsolved, findNextUnsolvedAfter, isSolved, Exercise } from './exerciseRepo';
 import { compile } from './compiler';
 import { gamification } from './gamification';
 
@@ -219,8 +219,8 @@ async function waitForNext(allExercises: Exercise[], currentExercise: Exercise):
 
     const navigationListener = async (str: string, key: any) => {
       if (awaitingNavigation && key.name === 'n') {
-        // Avançar para próximo não resolvido
-        const nextUnsolved = await findNextUnsolved(allExercises);
+        // Avançar para próximo não resolvido APÓS o exercício atual
+        const nextUnsolved = await findNextUnsolvedAfter(allExercises, currentExercise);
         selectedExercise = nextUnsolved;
         process.stdin.removeListener('keypress', navigationListener);
         resolve(selectedExercise);
