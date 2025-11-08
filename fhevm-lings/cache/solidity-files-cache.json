@@ -1,8 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/home/fnfoschiera/fhevm-lings/exercises/02_import_tfhe.sol": {
-      "lastModificationDate": 1762559651128,
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/02_import_tfhe.sol": {
+      "lastModificationDate": 1762563484916,
       "contentHash": "e65b34f57fe7efa183d8f67ba78092a5",
       "sourceName": "exercises/02_import_tfhe.sol",
       "solcConfig": {
@@ -39,7 +39,7 @@
         "BasicImports"
       ]
     },
-    "/home/fnfoschiera/fhevm-lings/node_modules/@fhevm/solidity/lib/FHE.sol": {
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/node_modules/@fhevm/solidity/lib/FHE.sol": {
       "lastModificationDate": 1762552076088,
       "contentHash": "4595eb92a31223262d4e29a27c938d97",
       "sourceName": "@fhevm/solidity/lib/FHE.sol",
@@ -81,41 +81,7 @@
         "IKMSVerifier"
       ]
     },
-    "/home/fnfoschiera/fhevm-lings/node_modules/@fhevm/solidity/lib/FheType.sol": {
-      "lastModificationDate": 1762552076100,
-      "contentHash": "65f472a3e319ba73ac6b19a5e8660d15",
-      "sourceName": "@fhevm/solidity/lib/FheType.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": []
-    },
-    "/home/fnfoschiera/fhevm-lings/node_modules/encrypted-types/EncryptedTypes.sol": {
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/node_modules/encrypted-types/EncryptedTypes.sol": {
       "lastModificationDate": 1762552075936,
       "contentHash": "521a624fad71cd29fc4b7c443b41bb86",
       "sourceName": "encrypted-types/EncryptedTypes.sol",
@@ -149,7 +115,7 @@
       ],
       "artifacts": []
     },
-    "/home/fnfoschiera/fhevm-lings/node_modules/@fhevm/solidity/lib/Impl.sol": {
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/node_modules/@fhevm/solidity/lib/Impl.sol": {
       "lastModificationDate": 1762552076112,
       "contentHash": "82d95a375319ded89a84a9323575b351",
       "sourceName": "@fhevm/solidity/lib/Impl.sol",
@@ -190,9 +156,43 @@
         "Impl"
       ]
     },
-    "/home/fnfoschiera/fhevm-lings/exercises/06_select_statement.sol": {
-      "lastModificationDate": 1762558734676,
-      "contentHash": "95e05e2f32f0db89193ca83fb365c158",
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/node_modules/@fhevm/solidity/lib/FheType.sol": {
+      "lastModificationDate": 1762552076100,
+      "contentHash": "65f472a3e319ba73ac6b19a5e8660d15",
+      "sourceName": "@fhevm/solidity/lib/FheType.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": []
+    },
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/06_select_statement.sol": {
+      "lastModificationDate": 1762570312484,
+      "contentHash": "ca8cfaa00226adcaee315935b4597b75",
       "sourceName": "exercises/06_select_statement.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -228,9 +228,9 @@
         "ConfidentialLogic"
       ]
     },
-    "/home/fnfoschiera/fhevm-lings/exercises/05_comparison.sol": {
-      "lastModificationDate": 1762558731008,
-      "contentHash": "4202fd4a85215d7afdfaaa54bdee4552",
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/05_comparison.sol": {
+      "lastModificationDate": 1762569356908,
+      "contentHash": "c707050344142b6e28430fcd695e6a54",
       "sourceName": "exercises/05_comparison.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -266,9 +266,9 @@
         "ConfidentialComparison"
       ]
     },
-    "/home/fnfoschiera/fhevm-lings/exercises/04_add_two_euints.sol": {
-      "lastModificationDate": 1762559294464,
-      "contentHash": "f7e0fa0f81ea3a070f5a78f4f4f87bdf",
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/04_add_two_euints.sol": {
+      "lastModificationDate": 1762569256540,
+      "contentHash": "24a999f060b5d3803cfec15d351a6ad1",
       "sourceName": "exercises/04_add_two_euints.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -304,10 +304,10 @@
         "HomomorphicOps"
       ]
     },
-    "/home/fnfoschiera/fhevm-lings/exercises/03_encypt_euint32.sol": {
-      "lastModificationDate": 1762562874556,
-      "contentHash": "9107cb49b7d8dc292389aa45ddb90b07",
-      "sourceName": "exercises/03_encypt_euint32.sol",
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/03_encrypt_euint32.sol": {
+      "lastModificationDate": 1762568244156,
+      "contentHash": "a2f621e76b8867686987a46c5a8b1bd4",
+      "sourceName": "exercises/03_encrypt_euint32.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
@@ -340,6 +340,234 @@
       ],
       "artifacts": [
         "EncryptData"
+      ]
+    },
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/12_decrypt_value.sol": {
+      "lastModificationDate": 1762570742712,
+      "contentHash": "8bc7bb2a5e08b0218244112b2ca36ede",
+      "sourceName": "exercises/12_decrypt_value.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@fhevm/solidity/lib/FHE.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "DecryptValue"
+      ]
+    },
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/11_boolean_operations.sol": {
+      "lastModificationDate": 1762570713924,
+      "contentHash": "40644cc0497d67f0bad99c49a980d3e4",
+      "sourceName": "exercises/11_boolean_operations.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@fhevm/solidity/lib/FHE.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "BooleanOperations"
+      ]
+    },
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/10_encrypted_counter.sol": {
+      "lastModificationDate": 1762570693760,
+      "contentHash": "791a0e041def701fd1e186dbb5178eb8",
+      "sourceName": "exercises/10_encrypted_counter.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@fhevm/solidity/lib/FHE.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "EncryptedCounter"
+      ]
+    },
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/09_min_max.sol": {
+      "lastModificationDate": 1762570666300,
+      "contentHash": "bb68c639e06834167991591cd0484000",
+      "sourceName": "exercises/09_min_max.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@fhevm/solidity/lib/FHE.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "MinMaxOperations"
+      ]
+    },
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/08_subtract_euints.sol": {
+      "lastModificationDate": 1762570652276,
+      "contentHash": "be509f32f4b97bfa6b9fe1f99eb85c59",
+      "sourceName": "exercises/08_subtract_euints.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@fhevm/solidity/lib/FHE.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "HomomorphicSubtract"
+      ]
+    },
+    "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/07_multiply_euints.sol": {
+      "lastModificationDate": 1762571486108,
+      "contentHash": "6e5a48f9eab2b533d2d553c72ee299f2",
+      "sourceName": "exercises/07_multiply_euints.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@fhevm/solidity/lib/FHE.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "HomomorphicMultiply"
       ]
     }
   }

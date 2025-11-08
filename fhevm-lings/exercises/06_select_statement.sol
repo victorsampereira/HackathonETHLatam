@@ -10,12 +10,13 @@ contract ConfidentialLogic {
     // Se 'condition' (um ebool) for verdadeiro, retorne 'ifTrueValue'.
     // Senão, retorne 'ifFalseValue'.
     function conditionalSelect(
-        ebool condition, 
-        euint32 ifTrueValue, 
+        ebool condition,
+        euint32 ifTrueValue,  
         euint32 ifFalseValue
-    ) external pure returns (euint32) {
-        
+    ) external returns (euint32) {
+
         // TODO: Implemente a lógica if/else usando FHE.select
-        
+        // Dica: FHE.select(condition, ifTrueValue, ifFalseValue)
+        return FHE.select(condition, ifTrueValue, ifFalseValue);
     }
 }

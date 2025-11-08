@@ -6,7 +6,7 @@ describe("BasicImports", function () {
     // O objetivo deste teste é *apenas* verificar se o contrato
     // pode ser "deployado". Se o 'import' no .sol estiver errado,
     // o 'getContractFactory' falhará a compilação.
-    
+
     let contractFactory;
     try {
       contractFactory = await ethers.getContractFactory("BasicImports");
@@ -17,9 +17,8 @@ describe("BasicImports", function () {
 
     // Se a fábrica foi criada, tenta fazer o deploy
     const contract = await contractFactory.deploy();
-    
+
     // Se chegou aqui, o deploy funcionou
-    // (Opcional: chamar uma função para garantir)
     expect(await contract.testImport()).to.equal(true);
   });
 });

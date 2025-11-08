@@ -16,12 +16,14 @@
     "ethers": "^6.15.0",
     "execa": "5.1.1",
     "fhevmjs": "^0.3.2",
+    "readline": "^1.3.0",
     "solc": "0.8.24"
   },
   "devDependencies": {
     "@fhevm/hardhat-plugin": "latest",
     "@fhevm/mock-utils": "latest",
     "@nomicfoundation/hardhat-ethers": "latest",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^18.19.3",
     "hardhat": "^2.22.6",
     "ts-node": "^10.9.1",

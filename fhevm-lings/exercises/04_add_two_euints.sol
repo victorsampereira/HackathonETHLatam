@@ -6,9 +6,10 @@ import "@fhevm/solidity/lib/FHE.sol";
 contract HomomorphicOps {
     // Esta função recebe DOIS números já encriptados
     // e deve retornar a SOMA encriptada.
-    function add(euint32 a, euint32 b) external pure returns (euint32) {
-        
-        // TODO: Retorne a soma homomórfica de a e b
+    function add(euint32 a, euint32 b) external returns (euint32) {
 
+        // TODO: Retorne a soma homomórfica de a e b
+        // Dica: Pode usar 'a + b' ou 'FHE.add(a, b)'
+        return FHE.add(a,b);
     }
 }

@@ -8,12 +8,18 @@
     {
       "name": "02_import_tfhe",
       "path": "exercises/02_import_tfhe.sol",
-      "hint": "Não se esqueça de importar a biblioteca TFHE. Adicione `import \"@fhevm/solidity/lib/TFHE.sol\";` no topo."
+      "hint": "Não se esqueça de importar a biblioteca FHE. Adicione `import \"@fhevm/solidity/lib/FHE.sol\";` no topo."
     },
     {
       "name": "03_encrypt_euint32",
       "path": "exercises/03_encrypt_euint32.sol",
-      "hint": "Para converter um 'uint32' num 'euint32' encriptado, use a função `TFHE.asEuint32(seu_valor)`."
+      "hint": "Para converter um 'uint32' num 'euint32' encriptado, use a função `FHE.asEuint32(seu_valor)`.",
+      "hints": [
+        "Você precisa converter um valor público (uint32) para um valor encriptado (euint32).",
+        "A biblioteca FHE tem uma função especial para converter tipos. Procure por 'asEuint32'.",
+        "Use: return FHE.asEuint32(myValue);"
+      ],
+      "difficulty": 1
     },
     {
       "name": "04_add_two_euints",
@@ -23,12 +29,42 @@
     {
       "name": "05_comparison",
       "path": "exercises/05_comparison.sol",
-      "hint": "Não pode usar 'a > b'. Use a função `TFHE.ge(a, b)` (maior ou igual) ou `TFHE.gt(a, b)` (maior que)."
+      "hint": "Não pode usar 'a > b'. Use a função `FHE.ge(a, b)` (maior ou igual) ou `FHE.gt(a, b)` (maior que)."
     },
     {
       "name": "06_select_statement",
       "path": "exercises/06_select_statement.sol",
-      "hint": "Não podemos usar `if/else` em dados secretos. Use `TFHE.select(ebool condition, euint32 ifTrue, euint32 ifFalse)`."
+      "hint": "Não podemos usar `if/else` em dados secretos. Use `FHE.select(ebool condition, euint32 ifTrue, euint32 ifFalse)`."
+    },
+    {
+      "name": "07_multiply_euints",
+      "path": "exercises/07_multiply_euints.sol",
+      "hint": "Multiplicação homomórfica funciona como adição! Use `a * b` ou `FHE.mul(a, b)`."
+    },
+    {
+      "name": "08_subtract_euints",
+      "path": "exercises/08_subtract_euints.sol",
+      "hint": "Para subtrair valores encriptados, use `a - b` ou `FHE.sub(a, b)`."
+    },
+    {
+      "name": "09_min_max",
+      "path": "exercises/09_min_max.sol",
+      "hint": "Use `FHE.min(a, b)` para o mínimo e `FHE.max(a, b)` para o máximo."
+    },
+    {
+      "name": "10_encrypted_counter",
+      "path": "exercises/10_encrypted_counter.sol",
+      "hint": "Lembre-se de converter valores públicos para euint32 antes de operar: `counter = counter + FHE.asEuint32(1)`."
+    },
+    {
+      "name": "11_boolean_operations",
+      "path": "exercises/11_boolean_operations.sol",
+      "hint": "Operações booleanas: `FHE.and()`, `FHE.or()`, `FHE.not()`, `FHE.xor()`. Ou use operadores: `&`, `|`, `!`, `^`."
+    },
+    {
+      "name": "12_decrypt_value",
+      "path": "exercises/12_decrypt_value.sol",
+      "hint": "Use `FHE.decrypt(valor_encriptado)` para revelar o valor. Mas cuidado: isso quebra a privacidade!"
     },
     {
       "name": "99_congratulations",

@@ -9,6 +9,8 @@ export interface Exercise {
   name: string;
   path: string;
   hint: string;
+  hints?: string[];
+  difficulty?: number;
 }
 
 export async function getExercises(): Promise<Exercise[]> {
