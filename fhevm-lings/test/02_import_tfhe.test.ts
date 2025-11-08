@@ -1,24 +1,43 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import * as fs from "fs";
+import * as path from "path";
 
 describe("BasicImports", function () {
-  it("should deploy the contract successfully", async function () {
-    // O objetivo deste teste é *apenas* verificar se o contrato
-    // pode ser "deployado". Se o 'import' no .sol estiver errado,
-    // o 'getContractFactory' falhará a compilação.
+  it("should import the FHE library", async function () {
+    // First, check that the import statement exists in the source code
+    const sourceCode = fs.readFileSync(
+      path.join(__dirname, "../exercises/02_import_tfhe.sol"),
+      "utf-8"
+    );
 
+    // Check if the FHE import is present
+    if (!sourceCode.includes('import "@fhevm/solidity/lib/FHE.sol"') &&
+        !sourceCode.includes("import '@fhevm/solidity/lib/FHE.sol'")) {
+      throw new Error(
+        "Missing FHE library import! " +
+        'Add: import "@fhevm/solidity/lib/FHE.sol"; at the top of the file.'
+      );
+    }
+
+    // Now try to compile and deploy
     let contractFactory;
     try {
       contractFactory = await ethers.getContractFactory("BasicImports");
     } catch (e: any) {
-      // Captura o erro se a compilação falhar
-      throw new Error("A compilação falhou. Você corrigiu o 'import' no '02_import_tfhe.sol'? " + e.message);
+      throw new Error(
+        "Compilation failed. Check your import statement. " + e.message
+      );
     }
 
-    // Se a fábrica foi criada, tenta fazer o deploy
+    // Deploy the contract
     const contract = await contractFactory.deploy();
+    await contract.waitForDeployment();
 
-    // Se chegou aqui, o deploy funcionou
-    expect(await contract.testImport()).to.equal(true);
+    // Call the function to verify it works
+    const result = await contract.testImport();
+
+    // The function should return an encrypted value (euint32)
+    expect(result).to.not.be.undefined;
   });
 });

@@ -16,6 +16,5 @@ contract ConfidentialLogic {
     ) external returns (euint32) {
 
         // TODO: Implement the  if/else logic
-        return FHE.select(condition, ifTrueValue, ifFalseValue);
     }
 }

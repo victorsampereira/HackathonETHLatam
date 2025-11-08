@@ -109,10 +109,10 @@ exports.ui = {
             console.log(chalk_1.default.cyan(`\n  Hint level ${level + 1}/${hints.length}:`));
             console.log(chalk_1.default.white(`  ${hints[level]}\n`));
             if (level < hints.length - 1) {
-                console.log(chalk_1.default.gray(`  💡 Press 't' again for more specific hint (${hints.length - level - 1} remaining)\n`));
+                console.log(chalk_1.default.gray(`  Press 't' again for more specific hint (${hints.length - level - 1} remaining)\n`));
             }
             else {
-                console.log(chalk_1.default.yellow(`  ⭐ This was the most specific hint!\n`));
+                console.log(chalk_1.default.yellow(`  This was the most specific hint!\n`));
             }
         }
         else {
