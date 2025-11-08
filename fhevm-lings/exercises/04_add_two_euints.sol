@@ -4,12 +4,10 @@ pragma solidity ^0.8.24;
 import "@fhevm/solidity/lib/FHE.sol";
 
 contract HomomorphicOps {
-    // Esta função recebe DOIS números já encriptados
-    // e deve retornar a SOMA encriptada.
+    // This function receives two already encrypted numbers
+    // and returns it`s encrypted sum
     function add(euint32 a, euint32 b) external returns (euint32) {
 
-        // TODO: Retorne a soma homomórfica de a e b
-        // Dica: Pode usar 'a + b' ou 'FHE.add(a, b)'
-        return FHE.add(a,b);
+        // TODO: Return the homomorphic sum of a and b
     }
 }

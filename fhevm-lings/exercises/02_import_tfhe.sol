@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.24;
 
-import "@fhevm/solidity/lib/FHE.sol";
-
 // TODO: The FHE library is missing 
 
 

@@ -12,7 +12,7 @@ export class InteractiveMode {
     this.rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
-      prompt: chalk.gray('\n⚡ '),
+      prompt: chalk.gray('\n '),
     });
 
     this.setupCommands();
@@ -31,8 +31,8 @@ export class InteractiveMode {
       const command = input.trim().toLowerCase();
 
       switch (command) {
-        case 'hint':
-        case 'h':
+        case 'tip':
+        case 't':
           this.showHint();
           break;
 
@@ -40,22 +40,19 @@ export class InteractiveMode {
         case 'l':
           await this.showList();
           break;
-
         case 'clear':
         case 'c':
           console.clear();
           this.showPromptHelp();
           break;
-
         case 'help':
-        case '?':
+        case 'h':
           this.showHelp();
           break;
 
-        case 'quit':
         case 'exit':
         case 'q':
-          console.log(chalk.yellow('\n👋 Até logo!\n'));
+          console.log(chalk.yellow('\n Later!\n'));
           process.exit(0);
           break;
 
@@ -64,8 +61,8 @@ export class InteractiveMode {
           break;
 
         default:
-          console.log(chalk.red(`❌ Comando desconhecido: "${command}"`));
-          console.log(chalk.gray('   Digite "help" para ver comandos disponíveis.'));
+          console.log(chalk.red(`Unknown command: "${command}"`));
+          console.log(chalk.gray('   Press "help" to see available commands.'));
       }
 
       this.rl.prompt();
@@ -74,10 +71,10 @@ export class InteractiveMode {
 
   private showHint() {
     if (this.currentExercise) {
-      console.log(chalk.yellow('\n💡 Dica:'));
+      console.log(chalk.yellow('\n Hint:'));
       console.log(chalk.cyan(`   ${this.currentExercise.hint}`));
     } else {
-      console.log(chalk.gray('\n   Nenhum exercício ativo no momento.'));
+      console.log(chalk.gray('\n   No current exercise.'));
     }
   }
 
@@ -85,7 +82,7 @@ export class InteractiveMode {
     // Importa dinamicamente para evitar dependência circular
     const { isSolved } = await import('./exerciseRepo');
 
-    console.log(chalk.yellow('\n📋 Lista de Exercícios:\n'));
+    console.log(chalk.yellow('\n List of problems:\n'));
 
     for (let i = 0; i < this.allExercises.length; i++) {
       const exercise = this.allExercises[i];
@@ -93,7 +90,7 @@ export class InteractiveMode {
       const status = solved ? chalk.green('✓') : chalk.gray('○');
       const isCurrent = this.currentExercise?.name === exercise.name;
       const name = isCurrent
-        ? chalk.bold.white(exercise.name) + chalk.yellow(' ← atual')
+        ? chalk.bold.white(exercise.name) + chalk.yellow(' ← current')
         : solved
         ? chalk.gray(exercise.name)
         : chalk.white(exercise.name);
@@ -104,17 +101,18 @@ export class InteractiveMode {
   }
 
   private showHelp() {
-    console.log(chalk.yellow('\n📚 Comandos Disponíveis:\n'));
-    console.log(chalk.white('   hint, h') + chalk.gray('      - Mostrar dica do exercício atual'));
-    console.log(chalk.white('   list, l') + chalk.gray('      - Listar todos os exercícios'));
-    console.log(chalk.white('   clear, c') + chalk.gray('     - Limpar a tela'));
-    console.log(chalk.white('   help, ?') + chalk.gray('      - Mostrar esta ajuda'));
-    console.log(chalk.white('   quit, q') + chalk.gray('      - Sair do programa'));
+    console.log(chalk.yellow('\n Available commands:\n'));
+    console.log(chalk.white('   tip, t') + chalk.gray('      - Shows hint '));
+    console.log(chalk.white('   list, l') + chalk.gray('      - Lists all problems'));
+    console.log(chalk.white('   clear, c') + chalk.gray('     - Clears screen'));
+    console.log(chalk.white('   next, n') + chalk.gray('     - Goes to next problem'));
+    console.log(chalk.white('   help, h') + chalk.gray('      - Shows help panel'));
+    console.log(chalk.white('   quit, q') + chalk.gray('      - Quits program'));
     console.log('');
   }
 
   private showPromptHelp() {
-    console.log(chalk.gray('Digite "help" para ver comandos disponíveis'));
+    console.log(chalk.gray('Press "help" to see available commands'));
   }
 
   start() {

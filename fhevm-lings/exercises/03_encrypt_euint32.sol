@@ -4,12 +4,10 @@ pragma solidity ^0.8.24;
 import "@fhevm/solidity/lib/FHE.sol";
 
 contract EncryptData {
-    // Esta função recebe um número normal (plaintext)
-    // e deve retornar o seu equivalente encriptado.
+    // This function receives a uint32 (plaintext)
+    // and must return its equivalent euint32(encrypted).
     function encrypt(uint32 myValue) external returns (euint32) {
         
-        // TODO: Retorne o 'myValue' como um euint32 encriptado
-        // Dica: A função que procura é FHE.asEuint32(...)
-        return FHE.asEuint32(myValue); 
+        // TODO: Return  'myValue' as an encrypted euint32
     }
 } 

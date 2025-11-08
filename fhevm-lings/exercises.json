@@ -3,20 +3,25 @@
     {
       "name": "01_introduction",
       "path": "exercises/01_introduction.md",
-      "hint": "Este é fácil: apenas leia o ficheiro e apague-o para continuar!"
+      "hint": "This one is easy: just read the file and delete it to continue!"
     },
     {
       "name": "02_import_tfhe",
       "path": "exercises/02_import_tfhe.sol",
-      "hint": "Não se esqueça de importar a biblioteca FHE. Adicione `import \"@fhevm/solidity/lib/FHE.sol\";` no topo."
+      "hint": "Don't forget to import the FHE library. Add `import \"@fhevm/solidity/lib/FHE.sol\";` to the top.",
+      "hints": [
+        "The contract is missing a necessary library import.",
+        "You need to import the FHE library from `@fhevm/solidity`.",
+        "The full import path is `@fhevm/solidity/lib/FHE.sol`."
+      ]
     },
     {
       "name": "03_encrypt_euint32",
       "path": "exercises/03_encrypt_euint32.sol",
-      "hint": "Para converter um 'uint32' num 'euint32' encriptado, use a função `FHE.asEuint32(seu_valor)`.",
+      "hint": "You can check the documentation at https://docs.zama.org/protocol.",
       "hints": [
-        "Você precisa converter um valor público (uint32) para um valor encriptado (euint32).",
-        "A biblioteca FHE tem uma função especial para converter tipos. Procure por 'asEuint32'.",
+        "You need to convert a public value (uint32) to an encrypted value (euint32).",
+        "The FHE library has a special function for converting types. Look for 'asEuint32'.",
         "Use: return FHE.asEuint32(myValue);"
       ],
       "difficulty": 1
@@ -24,52 +29,97 @@
     {
       "name": "04_add_two_euints",
       "path": "exercises/04_add_two_euints.sol",
-      "hint": "Pode adicionar (e subtrair, multiplicar) 'euints' tal como números normais. Tente `a + b`."
+      "hint": "You can add (and subtract, multiply) 'euints' just like normal numbers. Try `a + b`.",
+      "hints": [
+        "Homomorphic operations allow you to perform math on encrypted data.",
+        "The `euint32` type supports standard arithmetic operators like `+`.",
+        "Simply return the result of `a + b`."
+      ]
     },
     {
       "name": "05_comparison",
       "path": "exercises/05_comparison.sol",
-      "hint": "Não pode usar 'a > b'. Use a função `FHE.ge(a, b)` (maior ou igual) ou `FHE.gt(a, b)` (maior que)."
+      "hint": "You can't use 'a > b'. Try using a function from the FHE library.",
+      "hints": [
+        "You cannot use standard operators like `>` or `>=` on encrypted types.",
+        "The FHE library provides functions for all comparisons, like `FHE.gt()` (greater than) or `FHE.ge()` (greater or equal).",
+        "For this problem, use `return FHE.ge(a, b);`"
+      ]
     },
     {
       "name": "06_select_statement",
       "path": "exercises/06_select_statement.sol",
-      "hint": "Não podemos usar `if/else` em dados secretos. Use `FHE.select(ebool condition, euint32 ifTrue, euint32 ifFalse)`."
+      "hint": "We can't use `if/else` on secret data. Use `FHE.select(ebool condition, euint32 ifTrue, euint32 ifFalse)`.",
+      "hints": [
+        "A standard `if/else` statement would require decrypting the condition, which we can't do.",
+        "We need a 'homomorphic if' statement. The FHE library provides `FHE.select()` for this.",
+        "The syntax is `FHE.select(encrypted_boolean, value_if_true, value_if_false)`."
+      ]
     },
     {
       "name": "07_multiply_euints",
       "path": "exercises/07_multiply_euints.sol",
-      "hint": "Multiplicação homomórfica funciona como adição! Use `a * b` ou `FHE.mul(a, b)`."
+      "hint": "Homomorphic multiplication works just like addition! Use `a * b` or `FHE.mul(a, b)`.",
+      "hints": [
+        "Just like addition, multiplication can be done directly on encrypted types.",
+        "You can use the `*` operator.",
+        "Return the result of `a * b`."
+      ]
     },
     {
       "name": "08_subtract_euints",
       "path": "exercises/08_subtract_euints.sol",
-      "hint": "Para subtrair valores encriptados, use `a - b` ou `FHE.sub(a, b)`."
+      "hint": "To subtract encrypted values, use `a - b` or `FHE.sub(a, b)`.",
+      "hints": [
+        "Subtraction is another supported homomorphic operation.",
+        "You can use the `-` operator.",
+        "Return the result of `a - b`."
+      ]
     },
     {
       "name": "09_min_max",
       "path": "exercises/09_min_max.sol",
-      "hint": "Use `FHE.min(a, b)` para o mínimo e `FHE.max(a, b)` para o máximo."
+      "hint": "Use `FHE.min(a, b)` for the minimum and `FHE.max(a, b)` for the maximum.",
+      "hints": [
+        "You can't use `if (a < b) return a;`.",
+        "The FHE library provides specific functions to find the minimum or maximum of two `euint` values.",
+        "Use `FHE.min(a, b)` to find the minimum, and `FHE.max(a, b)` to find the maximum."
+      ]
     },
     {
       "name": "10_encrypted_counter",
       "path": "exercises/10_encrypted_counter.sol",
-      "hint": "Lembre-se de converter valores públicos para euint32 antes de operar: `counter = counter + FHE.asEuint32(1)`."
+      "hint": "Remember to convert public values to euint32 before operating: `counter = counter + FHE.asEuint32(1)`.",
+      "hints": [
+        "The goal is to increment an encrypted counter (an `euint32`) by a public value (a `uint32`).",
+        "You cannot directly add an `euint32` and a `uint32`. You must convert the public value first.",
+        "First, convert `1` to an `euint32` using `FHE.asEuint32(1)`, then add it to the counter."
+      ]
     },
     {
       "name": "11_boolean_operations",
       "path": "exercises/11_boolean_operations.sol",
-      "hint": "Operações booleanas: `FHE.and()`, `FHE.or()`, `FHE.not()`, `FHE.xor()`. Ou use operadores: `&`, `|`, `!`, `^`."
+      "hint": "Boolean operations: `FHE.and()`, `FHE.or()`, `FHE.not()`, `FHE.xor()`. Or use operators: `&`, `|`, `!`, `^`.",
+      "hints": [
+        "The FHE library supports homomorphic operations on encrypted booleans (`ebool`).",
+        "You can use standard bitwise operators `&` (AND), `|` (OR), `^` (XOR), and `!` (NOT).",
+        "Alternatively, you can use the library functions: `FHE.and(a, b)`, `FHE.or(a, b)`, etc."
+      ]
     },
     {
       "name": "12_decrypt_value",
       "path": "exercises/12_decrypt_value.sol",
-      "hint": "Use `FHE.decrypt(valor_encriptado)` para revelar o valor. Mas cuidado: isso quebra a privacidade!"
+      "hint": "Use `FHE.decrypt(encrypted_value)` to reveal the value. But be careful: this breaks privacy!",
+      "hints": [
+        "Sometimes you need to reveal an encrypted value. This is the only operation that breaks confidentiality.",
+        "The FHE library has a `decrypt` function.",
+        "Use `FHE.decrypt(encrypted_value)`. This function is typically used in `view` functions to check a value off-chain."
+      ]
     },
     {
       "name": "99_congratulations",
       "path": "exercises/99_congratulations.md",
-      "hint": "Parabéns!"
+      "hint": "Congratulations!"
     }
   ]
 }

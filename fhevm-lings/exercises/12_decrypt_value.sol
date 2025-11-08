@@ -4,35 +4,32 @@ pragma solidity ^0.8.24;
 import "@fhevm/solidity/lib/FHE.sol";
 
 contract DecryptValue {
-    // Este exercício mostra como DESCRIPTOGRAFAR valores.
-    // IMPORTANTE: Só descriptografe quando realmente necessário!
-    // A descriptografia quebra a privacidade.
+    // This shows the Decrypting process
+    // IMPORTANT: Only decrypt when truly necessary!
 
     euint32 private secretValue;
     address private owner;
 
     constructor() {
         owner = msg.sender;
-        secretValue = FHE.asEuint32(42); // Valor secreto inicial
+        secretValue = FHE.asEuint32(42); // Secret initial value
     }
 
     function setSecretValue(uint32 newValue) external {
-        require(msg.sender == owner, "Apenas o dono pode definir o valor");
-        // TODO: Converta newValue para euint32 e armazene em secretValue
+        require(msg.sender == owner, "Only the owner can define the value");
+        // TODO: Convert newValue to euint32 and store in secretValue
 
     }
 
     function revealToOwner() external view returns (uint32) {
-        require(msg.sender == owner, "Apenas o dono pode revelar o valor");
+        require(msg.sender == owner, "Only the owner can define the value");
 
-        // TODO: Descriptografe secretValue e retorne como uint32
-        // Dica: Use FHE.decrypt(secretValue)
-        // NOTA: Em produção, você usaria um sistema de permissões mais robusto!
+        // TODO: Descrypt secretValue and return as uint32
 
     }
 
     function getEncryptedValue() external view returns (euint32) {
-        // Qualquer um pode obter o valor encriptado (mas não pode lê-lo!)
+        // Anyone can obtain the encrypted value ( but can't decrypt it!)
         return secretValue;
     }
 }

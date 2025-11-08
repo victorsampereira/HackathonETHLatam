@@ -14,14 +14,14 @@ let awaitingNavigation = false;
 // Cache de status dos exercícios (para acelerar lista)
 const exerciseStatusCache = new Map<string, boolean>();
 
-// Esta é a função principal que orquestra tudo
+
 async function main() {
   const args = process.argv.slice(2);
   const command = args[0];
 
   const allExercises = await getExercises();
 
-  // Comando: mostrar dica do exercício atual
+  // Comando: mostra dica do exercício atual
   if (command === 'hint') {
     const currentExercise = await findNextUnsolved(allExercises);
     if (currentExercise) {
@@ -32,7 +32,7 @@ async function main() {
     return;
   }
 
-  // Comando: listar todos os exercícios com status
+  // lista todos os exercícios com status
   if (command === 'list') {
     const exerciseStatuses = await Promise.all(
       allExercises.map(async (exercise) => ({
@@ -44,31 +44,31 @@ async function main() {
     return;
   }
 
-  // Comando: verificar um exercício específico
+  // verifica um exercício específico
   if (command === 'verify') {
     const exerciseName = args[1];
     if (!exerciseName) {
-      console.log(chalk.red('❌ Por favor especifique o nome do exercício.'));
-      console.log(chalk.gray('   Exemplo: npm run watch verify 03_encrypt_euint32'));
+      console.log(chalk.red(' Please specify an existing problem.'));
+      console.log(chalk.gray('   Example: npm run watch verify 03_encrypt_euint32'));
       return;
     }
 
     const exercise = allExercises.find(ex => ex.name === exerciseName);
     if (!exercise) {
-      console.log(chalk.red(`❌ Exercício "${exerciseName}" não encontrado.`));
+      console.log(chalk.red(`Problem "${exerciseName}" not found.`));
       return;
     }
 
-    console.log(chalk.blue(`\n🔄 Verificando ${exercise.name}...\n`));
+    console.log(chalk.blue(`\n Verifying ${exercise.name}...\n`));
     const result = await compile(exercise.path);
 
     if (result.success) {
-      console.log(chalk.green('✅ Exercício correto!'));
+      console.log(chalk.green('Problem solved!'));
     } else {
-      console.log(chalk.red('❌ Exercício ainda incorreto.'));
+      console.log(chalk.red(' Exercise is still incorrect.'));
       ui.showHint(exercise.hint);
       if (result.error) {
-        console.log(chalk.gray('\nErro:\n' + result.error));
+        console.log(chalk.gray('\nError:\n' + result.error));
       }
     }
     return;
@@ -120,14 +120,39 @@ async function main() {
  * Mostra dicas de atalhos de teclado
  */
 function showKeyboardHints() {
-  console.log(chalk.gray('  Atalhos: ') +
-    chalk.white('h') + chalk.gray('=dica  ') +
-    chalk.white('n') + chalk.gray('=próximo  ') +
+  console.log(chalk.gray('  Shortcuts: ') +
+    chalk.white('t') + chalk.gray('=hint  ') +
+    chalk.white('n') + chalk.gray('=next  ') +
     chalk.white('s') + chalk.gray('=stats  ') +
-    chalk.white('l') + chalk.gray('=lista (escolha exercício)  ') +
-    chalk.white('c') + chalk.gray('=limpar  ') +
-    chalk.white('q') + chalk.gray('=sair'));
+    chalk.white('l') + chalk.gray('=list ') +
+    chalk.white('c') + chalk.gray('=clean ') +
+    chalk.white('h') + chalk.gray('=help ') +
+    chalk.white('q') + chalk.gray('=quit'));
   console.log(chalk.gray('─'.repeat(50)) + '\n');
+}
+
+/**
+ * Mostra a tela de ajuda completa.
+ */
+function showHelp() {
+  console.clear();
+  console.log(chalk.bold.blue('FHElings Help'));
+  console.log(chalk.gray('─'.repeat(50)) + '\n');
+  
+  console.log(chalk.bold.yellow('How to:'));
+  console.log('FHElings is an interactive learning platform.');
+
+  console.log(chalk.bold.white('\n Keyboard Shortcuts'));
+  console.log(`  ${chalk.cyan('t')} - ${chalk.gray('Hint')}:   Shows a hint for the current problem.`);
+  console.log(`  ${chalk.cyan('n')} - ${chalk.gray('Next')}:   GOes to the next problem.`);
+  console.log(`  ${chalk.cyan('l')} - ${chalk.gray('List')}:   Shows a list with all available problems.`);
+  console.log(`  ${chalk.cyan('s')} - ${chalk.gray('Stats')}:  Shows your learning stats.`);
+  console.log(`  ${chalk.cyan('c')} - ${chalk.gray('Clear')}:  Clears the screen.`);
+  console.log(`  ${chalk.cyan('h')} - ${chalk.gray('Help')}:   Shows this help menu.`);
+  console.log(`  ${chalk.cyan('q')} - ${chalk.gray('Quit')}:   Quits the program (also Ctrl^C).`);
+
+  console.log(chalk.gray('\n' + '─'.repeat(50)));
+  console.log(chalk.gray('  Press any key to return...'));
 }
 
 /**
@@ -165,7 +190,7 @@ function setupKeyboardShortcuts(
 
     process.stdin.on('keypress', async (str, key) => {
       if (key.ctrl && key.name === 'c') {
-        console.log(chalk.yellow('\n\n👋 Até logo!\n'));
+        console.log(chalk.yellow('\n\n See you soon!\n'));
         process.exit(0);
       }
 
@@ -175,7 +200,7 @@ function setupKeyboardShortcuts(
       }
 
       switch (key.name) {
-        case 'h':
+        case 't':
           const current = getCurrentExercise();
           if (current) {
             ui.showProgressiveHint(current.name, current.hints);
@@ -184,7 +209,16 @@ function setupKeyboardShortcuts(
 
         case 's':
           gamification.showStats();
-          console.log(chalk.gray('\n  Pressione qualquer tecla para continuar...\n'));
+          console.log(chalk.gray('\n  Press any key to continue...\n'));
+          await waitForKeypress();
+
+          console.clear();
+          const exS = getCurrentExercise();
+          if (exS) {
+            const idx = allExercises.findIndex(e => e.path === exS.path) + 1;
+            ui.nextChallenge(exS.name, idx, allExercises.length);
+            showKeyboardHints();
+          }
           break;
 
         case 'l':
@@ -201,9 +235,24 @@ function setupKeyboardShortcuts(
             showKeyboardHints();
           }
           break;
+        case 'h':
+          console.clear();
+          showHelp();
+          await waitForKeypress();
+          
+          console.clear();
+          const exH = getCurrentExercise();
+          if (exH) {
+            const idxH = allExercises.findIndex(e => e.path === exH.path) + 1;
+            ui.nextChallenge(exH.name, idxH, allExercises.length);
+            showKeyboardHints();
+          }
+          break;
+  
+
 
         case 'q':
-          console.log(chalk.yellow('\n\n👋 Até logo!\n'));
+          console.log(chalk.yellow('\n\n Bye bye!\n'));
           gamification.showStats();
           console.log(chalk.gray('\n'));
           process.exit(0);
@@ -211,6 +260,19 @@ function setupKeyboardShortcuts(
       }
     });
   }
+}
+
+/**
+ * Waits for a single keypress
+ */
+async function waitForKeypress(): Promise<void> {
+  return new Promise((resolve) => {
+    const listener = (str: string, key: any) => {
+      process.stdin.removeListener('keypress', listener);
+      resolve();
+    };
+    process.stdin.once('keypress', listener);
+  });
 }
 
 /**
@@ -232,7 +294,7 @@ async function showExerciseListWithSelection(
   ui.listExercises(exerciseStatuses.map(e => ({ name: e.name, solved: e.solved })));
   gamification.showStats();
 
-  console.log(chalk.yellow('\n  💡 Digite o número do exercício (1-' + allExercises.length + ') ou pressione Enter para voltar:'));
+  console.log(chalk.yellow('\n  Type the number of the problem (1-' + allExercises.length + ') or press Enter to return:'));
   console.log(chalk.gray('  '));
 
   // Lê input do usuário
@@ -242,7 +304,7 @@ async function showExerciseListWithSelection(
     const selectedIndex = Number(input) - 1;
     if (selectedIndex >= 0 && selectedIndex < allExercises.length) {
       const selectedExercise = allExercises[selectedIndex];
-      console.log(chalk.green(`\n  ✓ Indo para: ${selectedExercise.name}\n`));
+      console.log(chalk.green(`\n  ✓ Going to: ${selectedExercise.name}\n`));
 
       // Fecha watcher atual se existir
       if (currentWatcher) {
@@ -255,7 +317,7 @@ async function showExerciseListWithSelection(
       // Pequeno delay para o usuário ver a mensagem
       await new Promise(resolve => setTimeout(resolve, 1000));
     } else {
-      console.log(chalk.red('\n  ❌ Número inválido!'));
+      console.log(chalk.red('\n  Invalid number!'));
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
@@ -296,7 +358,7 @@ function watchExercise(exercise: Exercise): Promise<boolean> {
 
   return new Promise((resolve) => {
     if (exercise.path.endsWith('.md')) {
-      ui.info(`Para continuar, por favor APAGUE o ficheiro: ${exercise.path}`);
+      ui.info(`To continue, please delete the file: ${exercise.path}`);
       const watcher = chokidar.watch(fullPath);
       currentWatcher = watcher;
 

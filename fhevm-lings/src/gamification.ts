@@ -56,42 +56,38 @@ export const gamification = {
   // Mensagens motivacionais baseadas em contexto
   getEncouragementMessage: (context: 'failure' | 'hint' | 'success' | 'streak'): string => {
     const failures = [
-      "💪 Não desista! Todo expert já foi iniciante.",
-      "🎯 Você está perto! Revise o código com calma.",
-      "🧠 Erro é parte do aprendizado. Tente novamente!",
-      "⚡ Persista! FHE é complexo, mas você consegue!",
-      "🔥 Cada erro te aproxima da solução!",
-      "🌟 Respire fundo e tente uma abordagem diferente.",
-      "💡 Às vezes a solução é mais simples do que parece!",
-      "🚀 Programadores de verdade fazem muitas tentativas!",
+      " Keep going! Even experts were once beginners.",
+      " You're close! Revise your code calmly.",
+      " Making mistakes are a part of it. Try again!",
+      "Persevere! FHE is complex, but you can do it!",
+      "Each mistake gets you close to success!",
+      "Take a deep breath and try a different approach.",
     ];
 
     const hints = [
-      "💭 Aqui vai uma dica útil:",
-      "🎓 Deixa eu te ajudar com isso:",
-      "🔍 Preste atenção nesta dica:",
-      "💡 Isso pode te dar um insight:",
-      "🗝️ A chave está aqui:",
-      "📚 Veja se isso ajuda:",
+      " Here's a useful tip:",
+      " Let me help you with this:",
+      " Pay attention to this hint:",
+      " Here's a small insight:",
+      " See if this can help you",
     ];
 
     const successes = [
-      "🎉 Incrível! Você dominou este conceito!",
-      "⚡ Fantástico! Você está arrasando!",
-      "🌟 Perfeito! Continue assim!",
-      "🔥 Excelente trabalho! Próximo desafio!",
-      "💎 Brilhante! Você é um natural em FHE!",
-      "🎯 Acertou em cheio! Parabéns!",
-      "🚀 Impressionante! Rumo ao próximo nível!",
-      "✨ Você está mandando muito bem!",
+      " Incredible! You really understood the concept!",
+      "Fantastic! You're killing it!",
+      " Perfect! Keep rocking!",
+      " Excelent work! Next challenge!",
+      " Brilliant! You're a natural at FHE!",
+      " Right on the money! Congratulations!",
+      " Impressivee! Onto the next level!",
     ];
 
     const streaks = [
-      "🔥 Você está em CHAMAS! 🔥",
-      "⚡ SEQUÊNCIA IMPARÁVEL! ⚡",
-      "🌟 MODO EXPERT ATIVADO! 🌟",
-      "💎 BRILHANTE! CONTINUE! 💎",
-      "🎯 PRECISÃO ABSOLUTA! 🎯",
+      " You're on FIRE! ",
+      " UNKILLABLE STREAK! ",
+      " EXPERT MODE ACTIVATED! ",
+      " BRILLIANT! KEEP GOING! ",
+      " ABSOLUTE PRECISION! ",
     ];
 
     switch (context) {
@@ -109,16 +105,12 @@ export const gamification = {
   // Fatos curiosos sobre FHE
   getFHEFact: (): string => {
     const facts = [
-      "🔐 FHE permite computações em dados encriptados sem nunca descriptografá-los!",
-      "🌍 FHE pode revolucionar a privacidade na blockchain e cloud computing!",
-      "🎓 O conceito de FHE foi proposto por Craig Gentry em 2009.",
-      "⚡ Com FHE, você pode somar números sem saber quais são!",
-      "🏥 FHE pode permitir análise médica sem expor dados sensíveis dos pacientes.",
-      "🗳️ Votação eletrônica verdadeiramente privada é possível com FHE!",
-      "💰 Você pode fazer leilões selados totalmente on-chain com FHE!",
-      "🎮 Games on-chain podem ter informação oculta (fog of war) com FHE!",
-      "🔮 FHE é considerado o 'Santo Graal' da criptografia!",
-      "📊 Com FHE, empresas podem analisar dados sem ver o conteúdo real!",
+      " FHE allow computation on encrypted data without having to decrypt!",
+      " FHE can revolutionize confiability on blockchain and cloud computing!",
+      " THe concept of FHE was proposed by Craig Gentry in 2009.",
+      " With FHE, you can add numbers without even knowing what they are!",
+      " You can make blind auctions with FHE!",
+      " FHE is considered the 'Holy Grail' of crypto!",
     ];
     return facts[Math.floor(Math.random() * facts.length)];
   },
@@ -126,18 +118,18 @@ export const gamification = {
   // Mostra estatísticas
   showStats: () => {
     const stats = gamification.getStats();
-    console.log(chalk.cyan('\n📊 Suas Estatísticas:'));
-    console.log(chalk.gray('  ├─ ') + chalk.white('Sequência atual: ') + chalk.yellow(`${stats.currentStreak} 🔥`));
-    console.log(chalk.gray('  ├─ ') + chalk.white('Melhor sequência: ') + chalk.green(`${stats.bestStreak} ⭐`));
-    console.log(chalk.gray('  ├─ ') + chalk.white('Total de tentativas: ') + chalk.blue(stats.totalAttempts));
-    console.log(chalk.gray('  └─ ') + chalk.white('Taxa de sucesso: ') + chalk.magenta(`${stats.successRate}%`));
+    console.log(chalk.cyan('\n Your Stats:'));
+    console.log(chalk.gray('  ├─ ') + chalk.white('Current streak: ') + chalk.yellow(`${stats.currentStreak} 🔥`));
+    console.log(chalk.gray('  ├─ ') + chalk.white('Best streak: ') + chalk.green(`${stats.bestStreak} ⭐`));
+    console.log(chalk.gray('  ├─ ') + chalk.white('Total tries: ') + chalk.blue(stats.totalAttempts));
+    console.log(chalk.gray('  └─ ') + chalk.white('SUcess rate: ') + chalk.magenta(`${stats.successRate}%`));
   },
 
   // Mostra dificuldade do exercício
   showDifficulty: (difficulty: number = 1) => {
     const stars = '⭐'.repeat(difficulty) + '☆'.repeat(3 - difficulty);
-    const level = difficulty === 1 ? 'Fácil' : difficulty === 2 ? 'Médio' : 'Difícil';
-    console.log(chalk.gray(`  Dificuldade: ${stars} ${level}`));
+    const level = difficulty === 1 ? 'East' : difficulty === 2 ? 'Medium' : 'Hard';
+    console.log(chalk.gray(`  Difficulty: ${stars} ${level}`));
   },
 
   // Animação de celebração
@@ -145,20 +137,20 @@ export const gamification = {
     const stats = gamification.getStats();
     console.log('\n' + chalk.green('▓'.repeat(50)));
     console.log(chalk.bold.green('\n  ✨ ' + gamification.getEncouragementMessage('success') + ' ✨'));
-    console.log(chalk.green(`\n  ${exerciseName} `) + chalk.gray('foi resolvido com sucesso!'));
+    console.log(chalk.green(`\n  ${exerciseName} `) + chalk.gray('was solved with sucess!'));
 
     if (currentStreak >= 3) {
       console.log(chalk.yellow(`\n  🔥 ${gamification.getEncouragementMessage('streak')}`));
-      console.log(chalk.yellow(`  Sequência de ${currentStreak} exercícios! 🔥`));
+      console.log(chalk.yellow(`  Streak of ${currentStreak} problems! 🔥`));
     }
 
     // Fato curioso ocasional (30% de chance)
     if (Math.random() < 0.3) {
-      console.log(chalk.cyan('\n  💡 Você sabia?'));
+      console.log(chalk.cyan('\n  Did you know?'));
       console.log(chalk.gray('  ' + gamification.getFHEFact()));
     }
 
-    console.log(chalk.gray('\n  Preparando próximo exercício...\n'));
+    console.log(chalk.gray('\n  Awaiting next problem...\n'));
     console.log(chalk.green('▓'.repeat(50)));
   }
 };

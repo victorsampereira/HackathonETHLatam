@@ -24,7 +24,7 @@ export async function isSolved(exercise: Exercise): Promise<boolean> {
     const fullPath = path.resolve(exercise.path);
     return !fs.existsSync(fullPath);
   } else if (exercise.path.endsWith('.sol')) {
-    // We can't show verbose output here, so we temporarily disable it
+    
     const originalInfo = ui.info;
     ui.info = () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
     const result = await compile(exercise.path);

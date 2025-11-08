@@ -4,12 +4,11 @@ pragma solidity ^0.8.24;
 import "@fhevm/solidity/lib/FHE.sol";
 
 contract HomomorphicSubtract {
-    // A subtração é tão simples quanto a adição!
-    // Esta função deve retornar a - b (ambos encriptados).
+    // Subtraction is just as simple as addition!
+    // This function shall return a - b (both encrypted).
     function subtract(euint32 a, euint32 b) external returns (euint32) {
 
-        // TODO: Retorne a diferença entre a e b
-        // Dica: Pode usar 'a - b' ou 'FHE.sub(a, b)'
+        // TODO: Return the difference between a and b
 
     }
 }

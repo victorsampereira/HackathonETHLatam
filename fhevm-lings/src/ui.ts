@@ -24,7 +24,7 @@ export const ui = {
     console.log(chalk.gray('\nLearn FHEVM correcting small exercises!\n'));
 
     console.log(chalk.yellow(' Keyboard Shortcuts:'));
-    console.log(chalk.gray('  • ') + chalk.white('h') + chalk.gray(' - Progressive tips (3 levels)'));
+    console.log(chalk.gray('  • ') + chalk.white('t') + chalk.gray(' - Progressive tips (3 levels)'));
     console.log(chalk.gray('  • ') + chalk.white('n') + chalk.gray(' - Advance to next exercise'));
     console.log(chalk.gray('  • ') + chalk.white('s') + chalk.gray(' - See your stats'));
     console.log(chalk.gray('  • ') + chalk.white('l') + chalk.gray(' - List exercises'));
@@ -34,7 +34,7 @@ export const ui = {
     console.log(chalk.yellow('\n CLI Commands (in another terminal):'));
     console.log(chalk.gray('  • ') + chalk.white('npm run watch list') + chalk.gray(' - Lists all exercises'));
     console.log(chalk.gray('  • ') + chalk.white('npm run watch hint') + chalk.gray(' - Shows tip on current exercise'));
-    console.log(chalk.gray('  • ') + chalk.white('npm run watch verify <nome>') + chalk.gray(' - CHecks specific exercise'));
+    console.log(chalk.gray('  • ') + chalk.white('npm run watch verify <nome>') + chalk.gray(' - Checks specific exercise'));
     console.log(chalk.gray('\n' + '─'.repeat(50) + '\n'));
   },
 
@@ -99,7 +99,7 @@ export const ui = {
       }
     }
 
-    console.log(chalk.gray('\n   Tip: Press ') + chalk.white('h') + chalk.gray(' to see progressive tips'));
+    console.log(chalk.gray('\n   Tips: Press ') + chalk.white('t') + chalk.gray(' to see progressive tips'));
     console.log(chalk.gray('  Awaiting next try...\n'));
   },
 
@@ -114,11 +114,11 @@ export const ui = {
     console.log(chalk.yellow(`\n${gamification.getEncouragementMessage('hint')}`));
 
     if (hints && hints.length > 0 && level < hints.length) {
-      console.log(chalk.cyan(`\n  Tip level ${level + 1}/${hints.length}:`));
+      console.log(chalk.cyan(`\n  Hint level ${level + 1}/${hints.length}:`));
       console.log(chalk.white(`  ${hints[level]}\n`));
 
       if (level < hints.length - 1) {
-        console.log(chalk.gray(`  Press 'h' again for remaining (${hints.length - level - 1} tips)\n`));
+        console.log(chalk.gray(`  Press 't' again for remaining (${hints.length - level - 1} tips)\n`));
       } else {
         console.log(chalk.yellow(`  This was the most specific tip!\n`));
       }
@@ -131,7 +131,7 @@ export const ui = {
 
   showNextPrompt: () => {
     console.log(chalk.yellow('\n  Press ') + chalk.white.bold('n') + chalk.yellow(' to advance to the next exercise'));
-    console.log(chalk.gray('     or ') + chalk.white('l') + chalk.gray(' to choose an specific exercise\n'));
+    console.log(chalk.gray('     or ') + chalk.white('l') + chalk.gray(' to choose an specific problem\n'));
   },
 
   listExercises: (exercises: { name: string; solved: boolean }[]) => {
@@ -144,7 +144,7 @@ export const ui = {
       const name = exercise.solved
         ? chalk.gray.strikethrough(exercise.name)
         : chalk.white(exercise.name);
-      const icon = exercise.solved ? '✅' : '📝';
+      const icon = exercise.solved ? 'y' : 'n';
 
       console.log(`  ${status} ${icon} ${chalk.gray(`${String(index + 1).padStart(2, '0')}:`)} ${name}`);
     });
@@ -153,32 +153,32 @@ export const ui = {
     const total = exercises.length;
 
     console.log('\n' + chalk.gray('─'.repeat(50)));
-    console.log(`\n  ${chalk.bold('Progresso Geral:')}`);
+    console.log(`\n  ${chalk.bold('General Progress:')}`);
     console.log(`  ${createProgressBar(solved, total, 40)}`);
-    console.log(chalk.gray(`  ${solved} de ${total} exercícios completos\n`));
+    console.log(chalk.gray(`  ${solved} out of ${total} exercises made\n`));
   },
 
   allDone: () => {
     console.clear();
-    console.log(chalk.bold.green('\n🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊'));
-    console.log(chalk.bold.green('\n          ✨ Congratulations! ✨'));
-    console.log(chalk.bold.green('\n🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊\n'));
+    console.log(chalk.bold.cyan('\n=═══════════════════════════════════════='));
+    console.log(chalk.bold.green('\n           Congratulations!!!'));
+    console.log(chalk.bold.cyan('\n=═══════════════════════════════════════='));
 
-    console.log(chalk.green('  🎉 Você completou TODOS os exercícios do fhevm-lings!'));
-    console.log(chalk.white('\n  Você aprendeu sobre:'));
-    console.log(chalk.cyan('    ✓ Importar a biblioteca FHE'));
-    console.log(chalk.cyan('    ✓ Encriptar dados (euint32)'));
-    console.log(chalk.cyan('    ✓ Operações homomórficas (adição)'));
-    console.log(chalk.cyan('    ✓ Comparações encriptadas'));
-    console.log(chalk.cyan('    ✓ Lógica condicional (FHE.select)'));
+    console.log(chalk.green('  You have completod all of FHElings exercises!'));
+    console.log(chalk.white('\n  You now know how to:'));
+    console.log(chalk.cyan('    ✓ Import the FHE library'));
+    console.log(chalk.cyan('    ✓ Encrypt data (euint32)'));
+    console.log(chalk.cyan('    ✓ Homomorphic operations (adittion, subtraction, multiplication)'));
+    console.log(chalk.cyan('    ✓ Encrypted comparisons'));
+    console.log(chalk.cyan('    ✓ Conditional Logic '));
 
-    console.log(chalk.gray('\n  Agora você está pronto para construir aplicações'));
-    console.log(chalk.gray('  com criptografia homomórfica usando FHEVM! 🚀\n'));
+    console.log(chalk.gray('\n  You know have the basic concepts to build '));
+    console.log(chalk.gray('  using FHEVM`s homomorphic cryptography! \n'));
 
-    console.log(chalk.yellow('  Próximos passos:'));
-    console.log(chalk.white('    • Explore a documentação: ') + chalk.blue('https://docs.zama.ai/fhevm'));
-    console.log(chalk.white('    • Construa seu próprio projeto com FHEVM'));
-    console.log(chalk.white('    • Compartilhe o que você aprendeu!\n'));
+    console.log(chalk.yellow('  Next steps:'));
+    console.log(chalk.white('    • Explore the documentation: https://docs.zama.org/protocol') + chalk.blue(''));
+    console.log(chalk.white('    • Build your first project with FHEVM'));
+    console.log(chalk.white('    • Share what you`ve learned!\n'));
   },
 
   info: (message: string) => {
@@ -186,7 +186,7 @@ export const ui = {
   },
 
   showExercisePath: (path: string) => {
-    console.log(chalk.gray(`  Arquivo: ${path}`));
+    console.log(chalk.gray(`  File: ${path}`));
   },
 
   separator: () => {
