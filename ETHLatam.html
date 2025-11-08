@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>FHElings - Master Confidential Computing on Ethereum</title>
+    <meta name="description" content="FHElings - The 'rustlings' for Zama FHEVM. Learn Fully Homomorphic Encryption on the blockchain by doing.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* * =========================================
+         * CSS (Estilos)
+         * Design: FHElings (Baseado na Imagem)
+         * =========================================
+         */
+
+        :root {
+            --color-yellow: #FDCB00;
+            --color-black-bg: #111111;
+            --color-dark-card: #1a1a1a; /* Um preto um pouco mais suave que o fundo */
+            --color-text: #ffffff;
+            --color-text-secondary: #aaaaaa;
+            --color-border: #333333;
+        }
+
+        /* --- Configuração Global --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: 'Inter', -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-black-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 1. Seção Hero (Topo) --- */
+        #hero {
+            padding: 80px 0;
+            background-color: var(--color-black-bg);
+        }
+
+        #hero .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+        }
+
+        /* "F" amarela da logo */
+        .hero-logo span {
+            display: inline-block;
+            background-color: var(--color-yellow);
+            color: var(--color-black-bg);
+            padding: 2px 8px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 25px;
+            color: var(--color-text-secondary);
+        }
+        
+        /* "It's easy to..." */
+        .hero-text h1 strong {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-text);
+            display: block;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-top: 15px;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--color-yellow);
+            color: var(--color-black-bg);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(253, 203, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-dark-card);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+        .btn-secondary:hover {
+            background-color: var(--color-border);
+        }
+
+        /* O cubo 3D da imagem */
+        .hero-cube {
+            width: 150px;
+            height: 150px;
+            position: relative;
+        }
+        .hero-cube .face {
+            position: absolute;
+            width: 75px;
+            height: 130px; /* 150 * sqrt(3)/2 */
+        }
+        .hero-cube .front {
+            background: var(--color-yellow);
+            transform: skewY(-30deg) translate(37.5px, 0);
+        }
+        .hero-cube .side {
+            background: #222;
+            transform: skewY(30deg) translate(0, 65px);
+        }
+        .hero-cube .top {
+            width: 130px; /* 150 * sqrt(3)/2 */
+            height: 75px;
+            background: #333;
+            transform: skewX(-30deg) translate(22px, -12.5px);
+        }
+        .hero-cube .z-logo {
+            position: absolute;
+            z-index: 10;
+            color: var(--color-black-bg);
+            font-size: 4rem;
+            font-weight: 900;
+            top: 25px;
+            left: 58px;
+        }
+
+
+        /* --- Wrapper de Conteúdo Principal (Amarelo) --- */
+        .content-wrapper {
+            background-color: var(--color-yellow);
+            padding: 40px 0;
+            border-radius: 16px 16px 0 0; /* Bordas arredondadas no topo */
+        }
+
+        /* --- Cards de Conteúdo (Pretos) --- */
+        .content-card {
+            background-color: var(--color-dark-card);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+
+        .content-card h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--color-yellow);
+            margin-bottom: 20px;
+        }
+
+        .content-card p {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* --- 1. Proposta (Diagrama) --- */
+        .flow-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .flow-box {
+            background: #2a2a2a;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .flow-box strong {
+            display: block;
+            color: var(--color-text);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--color-yellow);
+        }
+
+        /* --- 2. Vídeo Demo --- */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- 3. Instalação --- */
+        .code-block-wrapper {
+            position: relative;
+        }
+        pre {
+            background-color: #0d0d0d;
+            border: 1px solid var(--color-border);
+            padding: 25px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        pre code {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--color-text);
+        }
+        .copy-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--color-border);
+            color: var(--color-text);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .copy-button:hover {
+            background-color: var(--color-yellow);
+            color: var(--color-black-bg);
+        }
+        .copy-button.copied {
+            background-color: #28a745;
+        }
+
+        /* --- 4. Equipe --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .team-member {
+            background-color: #2a2a2a;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .team-member img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--color-yellow);
+            margin-bottom: 15px;
+        }
+        .team-member h3 {
+            font-size: 1.2rem;
+            color: var(--color-text);
+            margin-bottom: 5px;
+        }
+        .team-member p {
+            font-size: 0.9rem;
+            color: var(--color-yellow);
+            margin-bottom: 0;
+        }
+        
+        .github-link {
+            text-align: center;
+        }
+
+        /* --- Rodapé --- */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="hero">
+        <div class="container">
+            <div class="hero-text">
+                
+                <div class="hero-logo">
+                    <h1>FHElings</h1>
+                </div>
+
+                <h1>
+                    <strong>It's easy to encrypt blockchain data with FHEVM</strong>
+                </h1>
+
+                <p>
+                    Learn how to use FHEVM quickly with FHElings.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#demo" class="btn btn-primary">Watch Demo</a>
+                    
+                   
+                </div>
+
+            </div>
+
+            
+
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="container">
+
+            <section id="proposal" class="content-card">
+                <h2>Our purpose</h2>
+                <p>
+                    Learn Fully Homomorphic Encryption (FHE) through active learning. FHElings is a CLI tool that makes the abstract practical. You master FHE by solving small, hands-on 'quests' right in your terminal
+                </p>
+                
+                                <div class="flow-diagram">
+                    <div class="flow-box">
+                        <strong>Public Blockchain</strong>
+                        <span>0x[abc...123] (Public)</span>
+                    </div>
+                    <div class="flow-arrow">➡️</div>
+                    <div class="flow-box">
+                        <strong>Zama FHEVM + FHElings</strong>
+                        <span>0x[Encrypted] (Confidential)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="demo" class="content-card">
+                <h2>See It in Action</h2>
+                <p>Watch our 1-minute demo to see how FHElings guides you from zero to hero.</p>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/Aa9uoAnfwNQ" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <section id="install" class="content-card">
+                <h2>Start Your Journey</h2>
+                <p>Get the CLI and start your first quest in seconds. No setup hell.</p>
+                <div class="code-block-wrapper">
+                    <pre><code id="code-to-copy">$ git clone git@github.com:victorsampereira/HackathonETHLatam.git</code></pre>
+                    
+                </div>
+                <div class="code-block-wrapper">
+                    <pre><code id="code-to-copy">$ cd fhevm-lings/ </code></pre>
+                    
+                </div>
+                <div class="code-block-wrapper">
+                    <pre><code id="code-to-copy">$ npm install</code></pre>
+                    
+                </div>
+                <div class="code-block-wrapper">
+                    <pre><code id="code-to-copy">$ npm run watch</code></pre>
+                    
+                </div>
+            </section>
+
+            <section id="team" class="content-card">
+                <h2>Our Team</h2>
+                <div class="team-grid">
+                    
+                    <div class="team-member">
+                        
+                        <h3>Fernando Nagano Foschiera</h3>
+                        <p>Backend Dev</p>
+                    </div>
+
+                    <div class="team-member">
+                        
+                        <h3>Henrique Lacerda Silveira</h3>
+                        <p>Designer</p>
+                    </div>
+
+                    <div class="team-member">
+                        
+                        <h3>Victor Sampaio Pereira</h3>
+                        <p>Frontend Dev</p>
+                    </div>
+
+                </div>
+                
+                <div class="github-link">
+                    <a href="https://github.com/victorsampereira/HackathonETHLatam" target="_blank" rel="noopener" class="btn btn-secondary">
+                        View Full Project on GitHub
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FHElings. A Hackathon Project.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyToClipboard() {
+            const codeElement = document.getElementById('code-to-copy');
+            let textToCopy = codeElement.innerText;
+            
+            if (textToCopy.startsWith('$ ')) {
+                textToCopy = textToCopy.substring(2);
+            }
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const button = document.querySelector('.copy-button');
+                button.innerText = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerText = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
