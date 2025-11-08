@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Aprenda FHEVM corrigindo código partido.",
   "main": "dist/index.js",
-  
   "bin": {
     "fhevm-lings": "./dist/index.js"
   },
@@ -23,6 +22,7 @@
     "chai": "^4.5.0",
     "chalk": "4.1.2",
     "chokidar": "3.5.3",
+    "dotenv": "^16.6.1",
     "ethers": "^6.15.0",
     "execa": "5.1.1",
     "fhevmjs": "^0.3.2",

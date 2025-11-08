@@ -1,173 +1,227 @@
-# ⚡ fhevm-lings
+# FHElings 🎓
 
-> Aprenda FHEVM (Fully Homomorphic Encryption Virtual Machine) através de pequenos exercícios interativos!
+An interactive, hands-on learning tool for **FHEVM (Fully Homomorphic Encryption Virtual Machine)**, inspired by Rustlings.
 
-Inspirado no [rustlings](https://github.com/rust-lang/rustlings), o `fhevm-lings` é uma forma divertida e prática de aprender criptografia homomórfica com a blockchain usando FHEVM da Zama.
+## What is FHEVM?
 
-## 🎯 O que você vai aprender
+FHEVM is a revolutionary technology by [Zama](https://zama.ai) that enables computations on encrypted data without decryption. Build truly private smart contracts where sensitive data remains encrypted on-chain!
 
-- ✅ Importar e usar a biblioteca FHE
-- ✅ Encriptar dados on-chain (euint32, ebool, etc.)
-- ✅ Realizar operações homomórficas (adição, comparação)
-- ✅ Implementar lógica condicional em dados encriptados
-- ✅ Construir contratos inteligentes com privacidade
-
-## 📦 Instalação
-
-### Pré-requisitos
-- Node.js v18 ou superior
-- npm ou yarn
-
-### Passos
-
-1. **Clone o repositório**:
-   ```bash
-   git clone https://github.com/SEU_USER/fhevm-lings.git
-   cd fhevm-lings
-   ```
-
-2. **Instale as dependências**:
-   ```bash
-   npm install
-   ```
-
-## 🚀 Como Usar
-
-### Modo Observador (Watch Mode)
-
-O modo padrão que observa seus arquivos e testa automaticamente:
+## Quick Start
 
 ```bash
-npm run watch```
+# Install dependencies
+npm install
 
-Isso iniciará o modo interativo que:
-1. Mostra o exercício atual
-2. Aguarda você editar o arquivo
-3. Automaticamente compila e testa quando você salva
-4. Avança para o próximo exercício quando você acertar!
+# Start learning!
+npm run watch
+```
 
-### Outros Comandos
+## Project Structure
 
-Você pode usar estes comandos **a qualquer momento**, inclusive enquanto o modo watch está rodando:
+```
+fhevm-lings/
+├── exercises/          # Learning exercises
+│   ├── 01_introduction.md
+│   ├── 02_import_tfhe.sol
+│   ├── 03_encrypt_euint32.sol
+│   ├── ...
+│   ├── 13_deploy_voting.sol    # Final challenge
+│   ├── 13_README.md            # Exercise 13 guide
+│   └── 99_congratulations.md
+│
+├── test/              # Automated tests for each exercise
+│   ├── 02_import_tfhe.test.ts
+│   ├── 03_encrypt_euint32.test.ts
+│   ├── ...
+│   └── 13_deploy_voting.test.ts
+│
+├── scripts/           # Deployment and utility scripts
+│   └── deploy-voting.ts        # Deploy exercise 13 to testnet
+│
+├── docs/              # Documentation
+│   └── DEPLOYMENT.md           # Testnet deployment guide
+│
+├── solutions/         # Reference solutions (spoilers!)
+│   └── SOLUTION_13.md          # Exercise 13 solution
+│
+├── src/               # CLI tool source code
+│   ├── index.ts               # Main application
+│   ├── ui.ts                  # User interface
+│   └── gamification.ts        # Hints, streaks, stats
+│
+├── exercises.json     # Exercise configuration
+├── .env.example      # Environment template
+└── hardhat.config.ts # Hardhat configuration
+```
+
+## Learning Path
+
+### Basics (Exercises 1-6)
+- ✅ **01**: Introduction to FHEVM
+- ✅ **02**: Import FHE library
+- ✅ **03**: Encrypt values (`FHE.asEuint32`)
+- ✅ **04**: Addition on encrypted data
+- ✅ **05**: Comparison operations
+- ✅ **06**: Conditional logic (`FHE.select`)
+
+### Advanced (Exercises 7-12)
+- ✅ **07**: Multiplication
+- ✅ **08**: Subtraction
+- ✅ **09**: Min/Max operations
+- ✅ **10**: Encrypted state management
+- ✅ **11**: Boolean operations
+- ✅ **12**: Decryption
+
+### Final Challenge (Exercise 13)
+- 🎯 **13**: Build and deploy a complete private voting system to testnet!
+
+## How It Works
+
+1. **Read** the exercise file and understand the task
+2. **Write** code to solve the TODOs
+3. **Save** the file - tests run automatically
+4. **Get feedback** - instant hints if something's wrong
+5. **Advance** - press 'n' to go to the next exercise
+
+## Interactive Commands
+
+While working on exercises:
+
+- **t** - Get progressive hints (3 levels)
+- **h** - Show help menu
+- **n** - Advance to next exercise (after completing current)
+- **l** - List all exercises and jump to any one
+- **s** - View your statistics and streak
+- **c** - Clear terminal
+- **q** - Quit
+
+## Features
+
+✨ **Progressive Hints** - Get gentle guidance that becomes more specific
+
+📊 **Statistics & Streaks** - Track your learning progress
+
+🎮 **Gamification** - Earn achievements and encouragement
+
+⚡ **Auto-Testing** - Instant feedback as you code
+
+🎯 **Real Deployment** - Deploy to Zama Devnet testnet
+
+## Exercise 13: Final Challenge
+
+The final exercise is special - you'll build a complete **Private Voting System** and deploy it to the Zama Devnet testnet!
+
+**Quick Access:**
+- 📝 Exercise Guide: [exercises/13_README.md](exercises/13_README.md)
+- 🚀 Deployment Guide: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
+- 💡 Solution Reference: [solutions/SOLUTION_13.md](solutions/SOLUTION_13.md)
+
+**What you'll build:**
+- Private voting contract with encrypted vote counts
+- Owner-controlled voting periods
+- Secure result decryption
+- Winner determination
+
+**Deployment Steps:**
+1. Complete the exercise locally
+2. Get testnet ETH from https://faucet.zama.ai
+3. Configure your `.env` file
+4. Deploy: `npx hardhat run scripts/deploy-voting.ts --network zamaDevnet`
+
+See the [Deployment Guide](docs/DEPLOYMENT.md) for detailed instructions.
+
+## Testing Individual Exercises
 
 ```bash
-# Ver lista de todos os exercícios e progresso (em nova janela do terminal)
-npm run watch list
+# Test a specific exercise
+npx hardhat test test/03_encrypt_euint32.test.ts
 
-# Mostrar dica do exercício atual (em nova janela do terminal)
-npm run watch hint
+# Test all exercises
+npx hardhat test
 
-# Verificar um exercício específico
-npm run watch verify 03_encrypt_euint32
+# Check which exercises are solved
+node check-exercises.js
 ```
 
-**Dica:** Abra uma segunda janela do terminal para executar comandos como `list` e `hint` sem interromper o modo watch!
+## Building the CLI Tool
 
-### 📸 Preview da Experiência
+```bash
+# Compile TypeScript
+npm run build
 
-**Terminal Limpo e Organizado:**
-```
-──────────────────────────────────────────────────
-
-⚡fhevm-lings Exercício Atual
-  Progresso: 4/7
-  ████████████████░░░░░░░░░░░░░░ 57%
-
-  📝 04_add_two_euints
-  Aguardando mudanças no arquivo...
-
-──────────────────────────────────────────────────
+# Run the compiled version
+node dist/index.js
 ```
 
-**Feedback ao Salvar:**
-```
-⚡fhevm-lings 🔄 Compilando e testando...
+## Environment Setup
 
-⚡fhevm-lings ❌ Teste falhou!
-  ├─ O exercício ainda não está correto.
-  └─ Corrija o código e salve o arquivo novamente.
+For deploying to testnet (Exercise 13):
 
-  💡 Dica:
-     Você pode usar 'return FHE.add(a, b)' ou simplesmente 'return a + b'
-```
+```bash
+# Copy the example env file
+cp .env.example .env
 
-**Lista de Progresso:**
-```
-⚡fhevm-lings 📋 Lista de Exercícios
-
-  ✓ ✅ 01: 01_introduction
-  ✓ ✅ 02: 02_import_tfhe
-  ✓ ✅ 03: 03_encrypt_euint32
-  ○ 📝 04: 04_add_two_euints ← atual
-  ...
-
-  Progresso Geral:
-  █████████████████░░░░░░░░░░░░░░ 57%
-  4 de 7 exercícios completos
+# Edit .env and add your private key (without 0x prefix)
+# PRIVATE_KEY=your_private_key_here
 ```
 
-## 📚 Estrutura dos Exercícios
+⚠️ **Never commit your `.env` file!** It's already in `.gitignore`.
 
-Os exercícios estão organizados em ordem de dificuldade crescente:
+## Network Configuration
 
-1. **01_introduction** - Introdução ao fhevm-lings
-2. **02_import_tfhe** - Importar a biblioteca FHE
-3. **03_encrypt_euint32** - Encriptar um número uint32
-4. **04_add_two_euints** - Adicionar dois números encriptados
-5. **05_comparison** - Comparar números encriptados
-6. **06_select_statement** - Lógica condicional (if/else)
-7. **99_congratulations** - Parabéns! 🎉
+The project is pre-configured for Zama Devnet:
 
-## 💡 Dicas
+- **Network:** Zama Devnet
+- **RPC URL:** https://devnet.zama.ai
+- **Chain ID:** 8009
+- **Faucet:** https://faucet.zama.ai
 
-- 🔍 Leia os comentários nos arquivos .sol - eles contêm dicas importantes
-- 📖 Use `npm run watch hint` se ficar preso
-- ✅ Os testes verificam se sua implementação está correta
-- 🚀 Não tenha medo de experimentar!
+Configuration is in [hardhat.config.ts](hardhat.config.ts).
 
-## 🎨 Interface Melhorada (Rustlings-Style!)
+## What You'll Learn
 
-Inspirado no rustlings, o fhevm-lings oferece uma experiência de aprendizado moderna e intuitiva:
+- 🔐 Homomorphic encryption basics
+- 🔢 Encrypted arithmetic (add, sub, mul)
+- ⚖️ Encrypted comparisons (gt, ge, lt, le)
+- 🔀 Conditional logic on encrypted data
+- 🔓 Safe decryption patterns
+- 🔒 Privacy-preserving smart contracts
+- 🚀 Testnet deployment
 
-- ✨ **Interface colorida e limpa** - Terminal sempre organizado, sem poluição visual
-- 📊 **Barra de progresso visual** - Veja seu avanço em tempo real com percentual
-- 💬 **Mensagens de erro estruturadas** - Erros formatados em árvore com dicas direcionadas
-- ⚡ **Feedback instantâneo** - Compilação e testes automáticos ao salvar
-- 🎯 **Comandos úteis** - `list`, `hint`, `verify` disponíveis a qualquer momento
-- 🧹 **Terminal auto-limpante** - Cada exercício começa com tela limpa
-- 🎨 **Feedback visual aprimorado** - Cores e emojis para melhor compreensão
+## Use Cases
 
-## 🛠️ Tecnologias
+FHEVM enables powerful privacy-preserving applications:
 
-- [FHEVM](https://docs.zama.ai/fhevm) - Fully Homomorphic Encryption Virtual Machine by Zama
-- [Hardhat](https://hardhat.org/) - Ethereum development environment
-- [Solidity](https://soliditylang.org/) - Smart contract language
-- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
-- [Chalk](https://github.com/chalk/chalk) - Terminal styling
+- **Private DeFi** - Hidden balances and transaction amounts
+- **Confidential Gaming** - Fog of war on blockchain
+- **Secret Voting** - Anonymous governance
+- **Sealed Auctions** - Bid without revealing amounts
+- **Privacy Analytics** - Compute on sensitive data
+- **KYC/Compliance** - Verify without revealing
 
-## 📖 Recursos Adicionais
+## Resources
 
-- [Documentação FHEVM](https://docs.zama.ai/fhevm)
-- [Zama GitHub](https://github.com/zama-ai)
-- [Exemplos FHEVM](https://github.com/zama-ai/fhevm)
+- 📚 [Zama FHEVM Documentation](https://docs.zama.ai/fhevm)
+- 🔧 [FHEVM GitHub](https://github.com/zama-ai/fhevm)
+- 💬 [Zama Discord Community](https://discord.gg/zama)
+- 🎓 [FHEVM Tutorials](https://docs.zama.ai/fhevm/tutorials)
 
-## 🤝 Contribuindo
+## Contributing
 
-Contribuições são bem-vindas! Sinta-se à vontade para:
+Found a bug or have a suggestion? Open an issue or submit a pull request!
 
-- Reportar bugs
-- Sugerir novos exercícios
-- Melhorar a documentação
-- Compartilhar feedback
+## License
 
-## 📝 Licença
+This project is open source and available under the MIT License.
 
-Unlicense - Domínio público
+## Acknowledgments
 
-## 🌟 Créditos
-
-Inspirado em [rustlings](https://github.com/rust-lang/rustlings) - A great way to learn Rust!
+- Inspired by [Rustlings](https://github.com/rust-lang/rustlings)
+- Built with [FHEVM](https://github.com/zama-ai/fhevm) by [Zama](https://zama.ai)
+- Powered by [Hardhat](https://hardhat.org)
 
 ---
 
-**Feito com ❤️ para a comunidade FHEVM**
+**Ready to start?** Run `npm run watch` and begin your FHEVM journey! 🚀
+
+**Questions?** Join the [Zama Discord](https://discord.gg/zama)

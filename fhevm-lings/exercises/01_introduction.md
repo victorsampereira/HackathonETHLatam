@@ -34,7 +34,7 @@ You'll learn to:
 
 ## Tips for Success
 
- **Use hints progressively** - Press 'h' for gentle guidance, press again for more specific help
+ **Use hints progressively** - Press 't' for gentle guidance, press again for more specific help
 
  **Track your progress** - Press 's' to see your statistics and streak
 

@@ -2,6 +2,9 @@ import { HardhatUserConfig, task } from "hardhat/config";
 import "@fhevm/hardhat-plugin";
 import path from "path";
 import fs from "fs";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 task("verify", "Compiles and tests a single exercise")
   .addParam("exercise", "The path to the exercise file")
@@ -24,6 +27,14 @@ const config: HardhatUserConfig = {
   paths: {
     sources: "./exercises"
   },
+  networks: {
+    // Zama Devnet configuration for deploying to testnet
+    zamaDevnet: {
+      url: "https://devnet.zama.ai",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      chainId: 8009
+    }
+  }
 };
 
 export default config;

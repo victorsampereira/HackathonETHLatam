@@ -7,6 +7,8 @@ const config_1 = require("hardhat/config");
 require("@fhevm/hardhat-plugin");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 (0, config_1.task)("verify", "Compiles and tests a single exercise")
     .addParam("exercise", "The path to the exercise file")
     .setAction(async (taskArgs, hre) => {
@@ -24,5 +26,13 @@ const config = {
     paths: {
         sources: "./exercises"
     },
+    networks: {
+        // Zama Devnet configuration for deploying to testnet
+        zamaDevnet: {
+            url: "https://devnet.zama.ai",
+            accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+            chainId: 8009
+        }
+    }
 };
 exports.default = config;

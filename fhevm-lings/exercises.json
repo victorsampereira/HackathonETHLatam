@@ -3,7 +3,12 @@
     {
       "name": "01_introduction",
       "path": "exercises/01_introduction.md",
-      "hint": "This one is easy: just read the file and delete it to continue!"
+      "hint": "This one is easy: just read the file and delete it to continue!",
+      "hints": [
+        "Read the introduction file to understand how FHElings works.",
+        "Once you've read it, delete the file: rm exercises/01_introduction.md",
+        "The system will automatically detect the file is deleted and move to the next exercise!"
+      ]
     },
     {
       "name": "02_import_tfhe",
@@ -115,6 +120,20 @@
         "The FHE library has a `decrypt` function.",
         "Use `FHE.decrypt(encrypted_value)`. This function is typically used in `view` functions to check a value off-chain."
       ]
+    },
+    {
+      "name": "13_deploy_voting",
+      "path": "exercises/13_deploy_voting.sol",
+      "hint": "This is the final challenge! Build a complete private voting system using all FHE concepts you've learned.",
+      "hints": [
+        "For the vote() function: Use FHE.asEuint32() to create encrypted 1 and 0, then use FHE.select() to increment the right counter.",
+        "You need to choose which vote to increment: FHE.select(choiceA, incrementA, incrementB).",
+        "For closeVoting(): Check msg.sender == owner with require(), then set votingOpen = false.",
+        "For getResults(): Use FHE.decrypt(votesOptionA) and FHE.decrypt(votesOptionB) to reveal the counts.",
+        "For getWinner(): Compare with FHE.gt(votesOptionA, votesOptionB), then decrypt the boolean result.",
+        "Don't forget to mark hasVoted[msg.sender] = true in the vote() function!"
+      ],
+      "difficulty": 3
     },
     {
       "name": "99_congratulations",
