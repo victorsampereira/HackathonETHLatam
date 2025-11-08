@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FHElings - Learn FHEVM Interactively</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>⚡ FHElings</h1>
+            <p>Learn FHEVM through Interactive Exercises</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container main-container">
+        <!-- Sidebar - Exercise List -->
+        <aside class="sidebar">
+            <h2>📚 Exercises</h2>
+            <div id="exercise-list" class="exercise-list">
+                <!-- Populated by JavaScript -->
+            </div>
+
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <p id="progress-text">0/14 Complete</p>
+            </div>
+
+            <div class="stats-section">
+                <h3>📊 Stats</h3>
+                <p>🔥 Streak: <span id="streak">0</span> days</p>
+                <p>💡 Hints used: <span id="hints-used">0</span></p>
+            </div>
+        </aside>
+
+        <!-- Main Content - Exercise Editor -->
+        <main class="main-content">
+            <div class="exercise-header">
+                <h2 id="exercise-title">Select an exercise to begin</h2>
+                <div class="exercise-actions">
+                    <button id="hint-btn" class="btn btn-hint">💡 Hint</button>
+                    <button id="test-btn" class="btn btn-primary">▶️ Test Solution</button>
+                    <button id="reset-btn" class="btn btn-secondary">🔄 Reset</button>
+                </div>
+            </div>
+
+            <!-- Exercise Description -->
+            <div id="exercise-description" class="exercise-description">
+                <p>Welcome to FHElings! Select an exercise from the sidebar to start learning.</p>
+            </div>
+
+            <!-- Code Editor -->
+            <div class="editor-container">
+                <div class="editor-header">
+                    <span id="file-name">exercise.sol</span>
+                    <span class="editor-language">Solidity</span>
+                </div>
+                <textarea id="code-editor" class="code-editor" spellcheck="false"></textarea>
+            </div>
+
+            <!-- Test Output -->
+            <div class="output-container">
+                <div class="output-header">
+                    <span>Test Output</span>
+                    <button id="clear-output" class="btn-small">Clear</button>
+                </div>
+                <pre id="test-output" class="test-output">Ready to test your solution...</pre>
+            </div>
+
+            <!-- Hints Panel (hidden by default) -->
+            <div id="hints-panel" class="hints-panel hidden">
+                <div class="hints-header">
+                    <h3>💡 Progressive Hints</h3>
+                    <button id="close-hints" class="btn-close">×</button>
+                </div>
+                <div id="hints-content" class="hints-content">
+                    <!-- Populated by JavaScript -->
+                </div>
+                <button id="next-hint-btn" class="btn btn-secondary">Next Hint</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>🎉 Congratulations!</h2>
+            <p id="success-message">You've completed the exercise!</p>
+            <button id="next-exercise-btn" class="btn btn-primary">Next Exercise →</button>
+            <button id="close-modal-btn" class="btn btn-secondary">Continue Practicing</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
