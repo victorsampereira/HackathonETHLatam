@@ -42,3 +42,16 @@ export async function findNextUnsolved(exercises: Exercise[]): Promise<Exercise 
   }
   return null;
 }
+
+export async function findNextUnsolvedAfter(exercises: Exercise[], currentExercise: Exercise): Promise<Exercise | null> {
+  const currentIndex = exercises.findIndex(ex => ex.path === currentExercise.path);
+
+  // Search for next unsolved exercise after the current one
+  for (let i = currentIndex + 1; i < exercises.length; i++) {
+    if (!(await isSolved(exercises[i]))) {
+      return exercises[i];
+    }
+  }
+
+  return null; // No more unsolved exercises
+}

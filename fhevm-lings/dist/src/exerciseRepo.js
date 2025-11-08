@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getExercises = getExercises;
 exports.isSolved = isSolved;
 exports.findNextUnsolved = findNextUnsolved;
+exports.findNextUnsolvedAfter = findNextUnsolvedAfter;
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const compiler_1 = require("./compiler");
@@ -67,4 +68,14 @@ async function findNextUnsolved(exercises) {
         }
     }
     return null;
+}
+async function findNextUnsolvedAfter(exercises, currentExercise) {
+    const currentIndex = exercises.findIndex(ex => ex.path === currentExercise.path);
+    // Search for next unsolved exercise after the current one
+    for (let i = currentIndex + 1; i < exercises.length; i++) {
+        if (!(await isSolved(exercises[i]))) {
+            return exercises[i];
+        }
+    }
+    return null; // No more unsolved exercises
 }

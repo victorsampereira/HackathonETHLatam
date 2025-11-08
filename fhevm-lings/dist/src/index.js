@@ -218,8 +218,8 @@ async function waitForNext(allExercises, currentExercise) {
         let selectedExercise = null;
         const navigationListener = async (str, key) => {
             if (awaitingNavigation && key.name === 'n') {
-                // Avançar para próximo não resolvido
-                const nextUnsolved = await (0, exerciseRepo_1.findNextUnsolved)(allExercises);
+                // Avançar para próximo não resolvido APÓS o exercício atual
+                const nextUnsolved = await (0, exerciseRepo_1.findNextUnsolvedAfter)(allExercises, currentExercise);
                 selectedExercise = nextUnsolved;
                 process.stdin.removeListener('keypress', navigationListener);
                 resolve(selectedExercise);
