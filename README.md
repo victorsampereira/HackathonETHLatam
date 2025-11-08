@@ -71,6 +71,7 @@ fhevm-lings/
 - ✅ **10**: Encrypted state management
 - ✅ **11**: Boolean operations
 - ✅ **12**: Decryption
+- ✅ **13**: Deploying a smart contract
 
 ### Final Challenge (Exercise 13)
 - 🎯 **13**: Build and deploy a complete private voting system to testnet!
