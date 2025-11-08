@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/02_import_tfhe.sol": {
-      "lastModificationDate": 1762577331724,
-      "contentHash": "c30dc8ece07400c2f2f80b162d3da119",
+      "lastModificationDate": 1762586439336,
+      "contentHash": "0a8a8ac241566059a690f9450d3fb608",
       "sourceName": "exercises/02_import_tfhe.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -303,8 +303,8 @@
       ]
     },
     "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/03_encrypt_euint32.sol": {
-      "lastModificationDate": 1762577419620,
-      "contentHash": "86be0ea7c19504de6b0700aa4ad8731b",
+      "lastModificationDate": 1762586941296,
+      "contentHash": "c10fb20cc0541be59513c735ff01e109",
       "sourceName": "exercises/03_encrypt_euint32.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -341,8 +341,8 @@
       ]
     },
     "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/12_decrypt_value.sol": {
-      "lastModificationDate": 1762570742712,
-      "contentHash": "8bc7bb2a5e08b0218244112b2ca36ede",
+      "lastModificationDate": 1762578469192,
+      "contentHash": "2a68d2bed214b3bf1d466cc614f48cda",
       "sourceName": "exercises/12_decrypt_value.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -379,8 +379,8 @@
       ]
     },
     "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/11_boolean_operations.sol": {
-      "lastModificationDate": 1762570713924,
-      "contentHash": "40644cc0497d67f0bad99c49a980d3e4",
+      "lastModificationDate": 1762582664900,
+      "contentHash": "2fdaf7e942bb243b4b6f24141c4fe9df",
       "sourceName": "exercises/11_boolean_operations.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -417,8 +417,8 @@
       ]
     },
     "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/10_encrypted_counter.sol": {
-      "lastModificationDate": 1762570693760,
-      "contentHash": "791a0e041def701fd1e186dbb5178eb8",
+      "lastModificationDate": 1762578082460,
+      "contentHash": "ff912e04fe43e0076b165d0f1e52fb64",
       "sourceName": "exercises/10_encrypted_counter.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -455,8 +455,8 @@
       ]
     },
     "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/09_min_max.sol": {
-      "lastModificationDate": 1762570666300,
-      "contentHash": "bb68c639e06834167991591cd0484000",
+      "lastModificationDate": 1762577867432,
+      "contentHash": "4555d6ae19de0e8bfb05efca32b661ef",
       "sourceName": "exercises/09_min_max.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -493,8 +493,8 @@
       ]
     },
     "/home/fnfoschiera/HackathonETHLatam/fhevm-lings/exercises/08_subtract_euints.sol": {
-      "lastModificationDate": 1762570652276,
-      "contentHash": "be509f32f4b97bfa6b9fe1f99eb85c59",
+      "lastModificationDate": 1762577774572,
+      "contentHash": "a8c725f3ffa22175891828e2af21a1c6",
       "sourceName": "exercises/08_subtract_euints.sol",
       "solcConfig": {
         "version": "0.8.24",

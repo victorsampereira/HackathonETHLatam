@@ -22,4 +22,5 @@ contract BooleanOperations {
 
     function xorOperation(ebool a, ebool b) external returns (ebool) {
         // TODO: Return a XOR b
+    }
 }

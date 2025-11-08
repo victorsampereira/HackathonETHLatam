@@ -63,7 +63,7 @@ async function compile(exercisePath) {
             else {
                 return {
                     success: false,
-                    error: result.all || result.stderr || 'Teste falhou'
+                    error: result.all || result.stderr || 'Test Failed'
                 };
             }
         }
@@ -87,7 +87,7 @@ async function compile(exercisePath) {
             else {
                 return {
                     success: false,
-                    error: result.all || result.stderr || 'Compilação falhou'
+                    error: result.all || result.stderr || 'Compilation Failed'
                 };
             }
         }

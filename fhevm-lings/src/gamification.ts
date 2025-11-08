@@ -119,15 +119,15 @@ export const gamification = {
   showStats: () => {
     const stats = gamification.getStats();
     console.log(chalk.cyan('\n Your Stats:'));
-    console.log(chalk.gray('  ├─ ') + chalk.white('Current streak: ') + chalk.yellow(`${stats.currentStreak} 🔥`));
-    console.log(chalk.gray('  ├─ ') + chalk.white('Best streak: ') + chalk.green(`${stats.bestStreak} ⭐`));
+    console.log(chalk.gray('  ├─ ') + chalk.white('Current streak: ') + chalk.yellow(`${stats.currentStreak} `));
+    console.log(chalk.gray('  ├─ ') + chalk.white('Best streak: ') + chalk.green(`${stats.bestStreak} `));
     console.log(chalk.gray('  ├─ ') + chalk.white('Total tries: ') + chalk.blue(stats.totalAttempts));
     console.log(chalk.gray('  └─ ') + chalk.white('SUcess rate: ') + chalk.magenta(`${stats.successRate}%`));
   },
 
   // Mostra dificuldade do exercício
   showDifficulty: (difficulty: number = 1) => {
-    const stars = '⭐'.repeat(difficulty) + '☆'.repeat(3 - difficulty);
+    const stars = ''.repeat(difficulty) + '☆'.repeat(3 - difficulty);
     const level = difficulty === 1 ? 'East' : difficulty === 2 ? 'Medium' : 'Hard';
     console.log(chalk.gray(`  Difficulty: ${stars} ${level}`));
   },
@@ -136,12 +136,12 @@ export const gamification = {
   celebrate: (exerciseName: string) => {
     const stats = gamification.getStats();
     console.log('\n' + chalk.green('▓'.repeat(50)));
-    console.log(chalk.bold.green('\n  ✨ ' + gamification.getEncouragementMessage('success') + ' ✨'));
+    console.log(chalk.bold.green('\n   ' + gamification.getEncouragementMessage('success') + ' '));
     console.log(chalk.green(`\n  ${exerciseName} `) + chalk.gray('was solved with sucess!'));
 
     if (currentStreak >= 3) {
-      console.log(chalk.yellow(`\n  🔥 ${gamification.getEncouragementMessage('streak')}`));
-      console.log(chalk.yellow(`  Streak of ${currentStreak} problems! 🔥`));
+      console.log(chalk.yellow(`\n   ${gamification.getEncouragementMessage('streak')}`));
+      console.log(chalk.yellow(`  Streak of ${currentStreak} problems! `));
     }
 
     // Fato curioso ocasional (30% de chance)

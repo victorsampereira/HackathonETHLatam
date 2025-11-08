@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "description": "Aprenda FHEVM corrigindo código partido.",
   "main": "dist/index.js",
+  
+  "bin": {
+    "fhevm-lings": "./dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "exercises/",
+    "test/",
+    "exercises.json"
+  ],
   "scripts": {
     "watch": "ts-node src/index.ts",
     "build": "tsc"

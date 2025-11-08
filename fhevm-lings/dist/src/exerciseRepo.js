@@ -52,7 +52,6 @@ async function isSolved(exercise) {
         return !fs.existsSync(fullPath);
     }
     else if (exercise.path.endsWith('.sol')) {
-        // We can't show verbose output here, so we temporarily disable it
         const originalInfo = ui_1.ui.info;
         ui_1.ui.info = () => { }; // eslint-disable-line @typescript-eslint/no-empty-function
         const result = await (0, compiler_1.compile)(exercise.path);

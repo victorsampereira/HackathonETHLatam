@@ -21,20 +21,28 @@ export const ui = {
     console.log(chalk.bold.cyan('║       ') + chalk.bold.white(' Welcome to FHElings!  ') + chalk.bold.cyan('         ║'));
     console.log(chalk.bold.cyan('║                                       ║'));
     console.log(chalk.bold.cyan('╚═══════════════════════════════════════╝'));
-    console.log(chalk.gray('\nLearn FHEVM correcting small exercises!\n'));
+    console.log(chalk.gray('\nLearn FHEVM by solving interactive exercises!\n'));
+
+    console.log(chalk.white.bold(' How it works:'));
+    console.log(chalk.gray('  1. ') + chalk.white('Read the exercise') + chalk.gray(' - Each file has a TODO comment'));
+    console.log(chalk.gray('  2. ') + chalk.white('Write your solution') + chalk.gray(' - Fill in the missing code'));
+    console.log(chalk.gray('  3. ') + chalk.white('Save the file') + chalk.gray(' - Auto-tested instantly!'));
+    console.log(chalk.gray('  4. ') + chalk.white('Get feedback') + chalk.gray(' - Hints if something is wrong'));
+    console.log(chalk.gray('  5. ') + chalk.white('Press ') + chalk.yellow('n') + chalk.gray(' to advance to next exercise\n'));
 
     console.log(chalk.yellow(' Keyboard Shortcuts:'));
-    console.log(chalk.gray('  • ') + chalk.white('t') + chalk.gray(' - Progressive tips (3 levels)'));
-    console.log(chalk.gray('  • ') + chalk.white('n') + chalk.gray(' - Advance to next exercise'));
-    console.log(chalk.gray('  • ') + chalk.white('s') + chalk.gray(' - See your stats'));
-    console.log(chalk.gray('  • ') + chalk.white('l') + chalk.gray(' - List exercises'));
-    console.log(chalk.gray('  • ') + chalk.white('c') + chalk.gray(' - Clears screen'));
+    console.log(chalk.gray('  • ') + chalk.white('t') + chalk.gray(' - Progressive hints (3 levels)'));
+    console.log(chalk.gray('  • ') + chalk.white('n') + chalk.gray(' - Advance to next exercise (after completing)'));
+    console.log(chalk.gray('  • ') + chalk.white('s') + chalk.gray(' - View your statistics'));
+    console.log(chalk.gray('  • ') + chalk.white('l') + chalk.gray(' - List and choose exercise'));
+    console.log(chalk.gray('  • ') + chalk.white('c') + chalk.gray(' - Clear screen'));
+    console.log(chalk.gray('  • ') + chalk.white('h') + chalk.gray(' - Help menu'));
     console.log(chalk.gray('  • ') + chalk.white('q') + chalk.gray(' - Quit program'));
 
     console.log(chalk.yellow('\n CLI Commands (in another terminal):'));
     console.log(chalk.gray('  • ') + chalk.white('npm run watch list') + chalk.gray(' - Lists all exercises'));
-    console.log(chalk.gray('  • ') + chalk.white('npm run watch hint') + chalk.gray(' - Shows tip on current exercise'));
-    console.log(chalk.gray('  • ') + chalk.white('npm run watch verify <nome>') + chalk.gray(' - Checks specific exercise'));
+    console.log(chalk.gray('  • ') + chalk.white('npm run watch hint') + chalk.gray(' - Shows hint for current exercise'));
+    console.log(chalk.gray('  • ') + chalk.white('npm run watch verify <name>') + chalk.gray(' - Verifies specific exercise'));
     console.log(chalk.gray('\n' + '─'.repeat(50) + '\n'));
   },
 
@@ -99,8 +107,8 @@ export const ui = {
       }
     }
 
-    console.log(chalk.gray('\n   Tips: Press ') + chalk.white('t') + chalk.gray(' to see progressive tips'));
-    console.log(chalk.gray('  Awaiting next try...\n'));
+    console.log(chalk.gray('\n   💭 Tip: Press ') + chalk.white('t') + chalk.gray(' to see progressive hints'));
+    console.log(chalk.gray('  Waiting for next attempt...\n'));
   },
 
   showHint: (hint: string) => {
@@ -118,9 +126,9 @@ export const ui = {
       console.log(chalk.white(`  ${hints[level]}\n`));
 
       if (level < hints.length - 1) {
-        console.log(chalk.gray(`  Press 't' again for remaining (${hints.length - level - 1} tips)\n`));
+        console.log(chalk.gray(`  Press 't' again for more specific hint (${hints.length - level - 1} remaining)\n`));
       } else {
-        console.log(chalk.yellow(`  This was the most specific tip!\n`));
+        console.log(chalk.yellow(`  This was the most specific hint!\n`));
       }
     } else {
       // Fallback para hint simples

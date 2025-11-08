@@ -46,7 +46,7 @@ class InteractiveMode {
         this.rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
-            prompt: chalk_1.default.gray('\n⚡ '),
+            prompt: chalk_1.default.gray('\n '),
         });
         this.setupCommands();
     }
@@ -60,8 +60,8 @@ class InteractiveMode {
         this.rl.on('line', async (input) => {
             const command = input.trim().toLowerCase();
             switch (command) {
-                case 'hint':
-                case 'h':
+                case 'tip':
+                case 't':
                     this.showHint();
                     break;
                 case 'list':
@@ -74,45 +74,44 @@ class InteractiveMode {
                     this.showPromptHelp();
                     break;
                 case 'help':
-                case '?':
+                case 'h':
                     this.showHelp();
                     break;
-                case 'quit':
                 case 'exit':
                 case 'q':
-                    console.log(chalk_1.default.yellow('\n👋 Até logo!\n'));
+                    console.log(chalk_1.default.yellow('\n Later!\n'));
                     process.exit(0);
                     break;
                 case '':
                     // Enter vazio - apenas mostra o prompt novamente
                     break;
                 default:
-                    console.log(chalk_1.default.red(`❌ Comando desconhecido: "${command}"`));
-                    console.log(chalk_1.default.gray('   Digite "help" para ver comandos disponíveis.'));
+                    console.log(chalk_1.default.red(`Unknown command: "${command}"`));
+                    console.log(chalk_1.default.gray('   Press "help" to see available commands.'));
             }
             this.rl.prompt();
         });
     }
     showHint() {
         if (this.currentExercise) {
-            console.log(chalk_1.default.yellow('\n💡 Dica:'));
+            console.log(chalk_1.default.yellow('\n Hint:'));
             console.log(chalk_1.default.cyan(`   ${this.currentExercise.hint}`));
         }
         else {
-            console.log(chalk_1.default.gray('\n   Nenhum exercício ativo no momento.'));
+            console.log(chalk_1.default.gray('\n   No current exercise.'));
         }
     }
     async showList() {
         // Importa dinamicamente para evitar dependência circular
         const { isSolved } = await Promise.resolve().then(() => __importStar(require('./exerciseRepo')));
-        console.log(chalk_1.default.yellow('\n📋 Lista de Exercícios:\n'));
+        console.log(chalk_1.default.yellow('\n List of problems:\n'));
         for (let i = 0; i < this.allExercises.length; i++) {
             const exercise = this.allExercises[i];
             const solved = await isSolved(exercise);
             const status = solved ? chalk_1.default.green('✓') : chalk_1.default.gray('○');
             const isCurrent = this.currentExercise?.name === exercise.name;
             const name = isCurrent
-                ? chalk_1.default.bold.white(exercise.name) + chalk_1.default.yellow(' ← atual')
+                ? chalk_1.default.bold.white(exercise.name) + chalk_1.default.yellow(' ← current')
                 : solved
                     ? chalk_1.default.gray(exercise.name)
                     : chalk_1.default.white(exercise.name);
@@ -121,16 +120,17 @@ class InteractiveMode {
         console.log('');
     }
     showHelp() {
-        console.log(chalk_1.default.yellow('\n📚 Comandos Disponíveis:\n'));
-        console.log(chalk_1.default.white('   hint, h') + chalk_1.default.gray('      - Mostrar dica do exercício atual'));
-        console.log(chalk_1.default.white('   list, l') + chalk_1.default.gray('      - Listar todos os exercícios'));
-        console.log(chalk_1.default.white('   clear, c') + chalk_1.default.gray('     - Limpar a tela'));
-        console.log(chalk_1.default.white('   help, ?') + chalk_1.default.gray('      - Mostrar esta ajuda'));
-        console.log(chalk_1.default.white('   quit, q') + chalk_1.default.gray('      - Sair do programa'));
+        console.log(chalk_1.default.yellow('\n Available commands:\n'));
+        console.log(chalk_1.default.white('   tip, t') + chalk_1.default.gray('      - Shows hint '));
+        console.log(chalk_1.default.white('   list, l') + chalk_1.default.gray('      - Lists all problems'));
+        console.log(chalk_1.default.white('   clear, c') + chalk_1.default.gray('     - Clears screen'));
+        console.log(chalk_1.default.white('   next, n') + chalk_1.default.gray('     - Goes to next problem'));
+        console.log(chalk_1.default.white('   help, h') + chalk_1.default.gray('      - Shows help panel'));
+        console.log(chalk_1.default.white('   quit, q') + chalk_1.default.gray('      - Quits program'));
         console.log('');
     }
     showPromptHelp() {
-        console.log(chalk_1.default.gray('Digite "help" para ver comandos disponíveis'));
+        console.log(chalk_1.default.gray('Press "help" to see available commands'));
     }
     start() {
         this.showPromptHelp();

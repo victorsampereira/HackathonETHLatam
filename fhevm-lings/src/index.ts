@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 import chokidar from 'chokidar';
@@ -77,7 +80,33 @@ async function main() {
   // Default watch mode com atalhos de teclado
   ui.welcome();
 
-  let currentExercise = await findNextUnsolved(allExercises);
+  console.log(chalk.cyan('\n  Press Enter to start...'));
+
+  // Aguarda Enter para começar
+  await waitForEnter();
+
+  // Inicializa cache de forma otimizada (lazy loading)
+  console.log(chalk.gray('\n  Loading exercises state...\n'));
+
+  // Carrega apenas até encontrar o primeiro não resolvido (muito mais rápido!)
+  let currentExercise: Exercise | null = null;
+  for (const exercise of allExercises) {
+    const solved = await isSolved(exercise);
+    exerciseStatusCache.set(exercise.name, solved);
+
+    if (!solved && !currentExercise) {
+      currentExercise = exercise;
+      // Carrega o resto em background sem bloquear
+      Promise.all(
+        allExercises.slice(allExercises.indexOf(exercise) + 1).map(async (ex) => {
+          const s = await isSolved(ex);
+          exerciseStatusCache.set(ex.name, s);
+        })
+      );
+      break;
+    }
+  }
+
   const totalExercises = allExercises.length;
 
   // Configura atalhos de teclado
@@ -95,6 +124,9 @@ async function main() {
     const success = await watchExercise(currentExercise);
 
     if (success) {
+      // Atualiza cache para marcar exercício como resolvido
+      exerciseStatusCache.set(currentExercise.name, true);
+
       ui.success(currentExercise.name);
       gamification.resetHintLevel(currentExercise.name);
 
@@ -117,6 +149,29 @@ async function main() {
 }
 
 /**
+ * Aguarda usuário pressionar Enter
+ */
+async function waitForEnter(): Promise<void> {
+  return new Promise((resolve) => {
+    const listener = (_str: string, key: any) => {
+      if (key.name === 'return') {
+        process.stdin.removeListener('keypress', listener);
+        resolve();
+      }
+    };
+
+    if (process.stdin.isTTY) {
+      readline.emitKeypressEvents(process.stdin);
+      if (!process.stdin.isRaw) {
+        process.stdin.setRawMode(true);
+      }
+    }
+
+    process.stdin.on('keypress', listener);
+  });
+}
+
+/**
  * Mostra dicas de atalhos de teclado
  */
 function showKeyboardHints() {
@@ -124,9 +179,9 @@ function showKeyboardHints() {
     chalk.white('t') + chalk.gray('=hint  ') +
     chalk.white('n') + chalk.gray('=next  ') +
     chalk.white('s') + chalk.gray('=stats  ') +
-    chalk.white('l') + chalk.gray('=list ') +
-    chalk.white('c') + chalk.gray('=clean ') +
-    chalk.white('h') + chalk.gray('=help ') +
+    chalk.white('l') + chalk.gray('=list (choose exercise)  ') +
+    chalk.white('c') + chalk.gray('=clear  ') +
+    chalk.white('h') + chalk.gray('=help  ') +
     chalk.white('q') + chalk.gray('=quit'));
   console.log(chalk.gray('─'.repeat(50)) + '\n');
 }
@@ -223,7 +278,17 @@ function setupKeyboardShortcuts(
 
         case 'l':
           // Mostrar lista e permitir seleção
-          await showExerciseListWithSelection(allExercises, setCurrentExercise);
+          const changed = await showExerciseListWithSelection(allExercises, setCurrentExercise);
+          if (changed) {
+            // Redraw current exercise after selection
+            console.clear();
+            const exL = getCurrentExercise();
+            if (exL) {
+              const idxL = allExercises.findIndex(e => e.path === exL.path) + 1;
+              ui.nextChallenge(exL.name, idxL, allExercises.length);
+              showKeyboardHints();
+            }
+          }
           break;
 
         case 'c':
@@ -277,11 +342,12 @@ async function waitForKeypress(): Promise<void> {
 
 /**
  * Mostra lista de exercícios e permite seleção
+ * Retorna true se um exercício foi selecionado
  */
 async function showExerciseListWithSelection(
   allExercises: Exercise[],
   setCurrentExercise: (ex: Exercise | null) => void
-): Promise<void> {
+): Promise<boolean> {
   console.clear();
 
   // Usa cache para status dos exercícios (muito mais rápido!)
@@ -294,7 +360,7 @@ async function showExerciseListWithSelection(
   ui.listExercises(exerciseStatuses.map(e => ({ name: e.name, solved: e.solved })));
   gamification.showStats();
 
-  console.log(chalk.yellow('\n  Type the number of the problem (1-' + allExercises.length + ') or press Enter to return:'));
+  console.log(chalk.yellow('\n  💡 Type the exercise number (1-' + allExercises.length + ') or press Enter to return:'));
   console.log(chalk.gray('  '));
 
   // Lê input do usuário
@@ -308,19 +374,23 @@ async function showExerciseListWithSelection(
 
       // Fecha watcher atual se existir
       if (currentWatcher) {
-        currentWatcher.close();
+        await currentWatcher.close();
         currentWatcher = null;
       }
 
+      // Atualiza para o exercício selecionado
       setCurrentExercise(selectedExercise);
 
-      // Pequeno delay para o usuário ver a mensagem
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Pequeno delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      return true;
     } else {
-      console.log(chalk.red('\n  Invalid number!'));
+      console.log(chalk.red('\n  ❌ Invalid number!'));
       await new Promise(resolve => setTimeout(resolve, 1000));
+      return false;
     }
   }
+  return false;
 }
 
 /**
