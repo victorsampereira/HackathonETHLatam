@@ -1,0 +1,39 @@
+{
+  "exercises": [
+    {
+      "name": "01_introduction",
+      "path": "exercises/01_introduction.md",
+      "hint": "Este é fácil: apenas leia o ficheiro e apague-o para continuar!"
+    },
+    {
+      "name": "02_import_tfhe",
+      "path": "exercises/02_import_tfhe.sol",
+      "hint": "Não se esqueça de importar a biblioteca TFHE. Adicione `import \"@fhevm/solidity/lib/TFHE.sol\";` no topo."
+    },
+    {
+      "name": "03_encrypt_euint32",
+      "path": "exercises/03_encrypt_euint32.sol",
+      "hint": "Para converter um 'uint32' num 'euint32' encriptado, use a função `TFHE.asEuint32(seu_valor)`."
+    },
+    {
+      "name": "04_add_two_euints",
+      "path": "exercises/04_add_two_euints.sol",
+      "hint": "Pode adicionar (e subtrair, multiplicar) 'euints' tal como números normais. Tente `a + b`."
+    },
+    {
+      "name": "05_comparison",
+      "path": "exercises/05_comparison.sol",
+      "hint": "Não pode usar 'a > b'. Use a função `TFHE.ge(a, b)` (maior ou igual) ou `TFHE.gt(a, b)` (maior que)."
+    },
+    {
+      "name": "06_select_statement",
+      "path": "exercises/06_select_statement.sol",
+      "hint": "Não podemos usar `if/else` em dados secretos. Use `TFHE.select(ebool condition, euint32 ifTrue, euint32 ifFalse)`."
+    },
+    {
+      "name": "99_congratulations",
+      "path": "exercises/99_congratulations.md",
+      "hint": "Parabéns!"
+    }
+  ]
+}

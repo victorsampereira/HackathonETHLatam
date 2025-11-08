@@ -1,0 +1,30 @@
+{
+  "name": "fhevm-lings",
+  "version": "0.1.0",
+  "description": "Aprenda FHEVM corrigindo código partido.",
+  "main": "dist/index.js",
+  "scripts": {
+    "watch": "ts-node src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@fhevm/solidity": "latest",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.1.0",
+    "chai": "^4.5.0",
+    "chalk": "4.1.2",
+    "chokidar": "3.5.3",
+    "ethers": "^6.15.0",
+    "execa": "5.1.1",
+    "fhevmjs": "^0.3.2",
+    "solc": "0.8.24"
+  },
+  "devDependencies": {
+    "@fhevm/hardhat-plugin": "latest",
+    "@fhevm/mock-utils": "latest",
+    "@nomicfoundation/hardhat-ethers": "latest",
+    "@types/node": "^18.19.3",
+    "hardhat": "^2.22.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}
