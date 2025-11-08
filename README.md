@@ -9,6 +9,8 @@ FHEVM is a revolutionary technology by [Zama](https://zama.ai) that enables comp
 ## Quick Start
 
 ```bash
+# Move to the correct folder
+cd fhevm-lings
 # Install dependencies
 npm install
 
