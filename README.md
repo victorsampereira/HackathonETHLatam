@@ -2,6 +2,8 @@
 
 An interactive, hands-on learning tool for **FHEVM (Fully Homomorphic Encryption Virtual Machine)**, inspired by Rustlings.
 
+Built by a team of three at the ETH LatAm hackathon, where it won **1st place** and **Best Educational Project**.
+
 ## What is FHEVM?
 
 FHEVM is a revolutionary technology by [Zama](https://zama.ai) that enables computations on encrypted data without decryption. Build truly private smart contracts where sensitive data remains encrypted on-chain!
